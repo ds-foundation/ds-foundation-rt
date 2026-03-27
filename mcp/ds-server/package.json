@@ -3,8 +3,16 @@
   "version": "0.1.0",
   "description": "MCP server exposing the design system registry as agent tools",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apacheco-RT/ds-foundation-rt.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
   "bin": {
-    "@ds/mcp-server": "./src/index.ts"
+    "ds-mcp-server": "./dist/index.js"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",

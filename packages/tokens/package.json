@@ -13,6 +13,10 @@
     "./tailwind": "./build/tailwind/preset.css",
     "./json": "./build/json/tokens.flat.json"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apacheco-RT/ds-foundation-rt.git"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
