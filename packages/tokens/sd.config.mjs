@@ -72,12 +72,23 @@ StyleDictionary.registerFormat({
   name: 'ds/tailwind/css-theme',
   format: ({ dictionary }) => {
     const lines = dictionary.allTokens.map((t) => {
-      // Prefer t.value (set by transforms); fall back to hex from raw $value for DTCG color objects
-      const v = (t.value != null)
-        ? t.value
-        : (typeof t.$value === 'object' && t.$value !== null && 'hex' in t.$value)
-          ? t.$value.hex
-          : String(t.$value);
+      let v = t.value;
+      if (v == null) {
+        const sv = t.$value;
+        if (typeof sv === 'object' && sv !== null) {
+          if ('hex' in sv && sv.hex) {
+            v = sv.hex;
+          } else if (sv.colorSpace === 'srgb' && Array.isArray(sv.components)) {
+            const [r, g, b] = sv.components.map((c) => Math.round(Number(c) * 255));
+            v = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+          } else {
+            console.warn(`[ds/tailwind/css-theme] Token "${t.name}" has no hex or sRGB fallback — using String(). Check $value:`, sv);
+            v = String(sv);
+          }
+        } else {
+          v = String(sv);
+        }
+      }
       return `  --${t.name}: ${v};`;
     });
     return `@theme {\n${lines.join('\n')}\n}\n`;
@@ -118,7 +129,8 @@ const SHARED_TRANSFORMS = ['ts/resolveMath', 'ds/dimension/css', 'ds/color/css',
 const TAILWIND_TRANSFORMS = [
   'ts/resolveMath',
   'ds/dimension/css',
-  'ds/color/hex-fallback',  // hex only — exclude ds/color/css so $value stays as DTCG object
+  'ds/color/hex-fallback',  // hex only — ds/color/css is excluded so t.value stays unset for colors;
+  // the format's own fallback reads hex directly from t.$value
   'name/kebab',
 ];
 
