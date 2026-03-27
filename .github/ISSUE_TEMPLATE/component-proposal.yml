@@ -1,0 +1,58 @@
+name: Component Proposal
+description: Propose a new component or pattern for the design system
+title: "[Component]: "
+labels: ["component-proposal", "needs-design-review"]
+body:
+  - type: input
+    id: component-name
+    attributes:
+      label: Component name
+      placeholder: e.g. DateRangePicker
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What does this component do?
+      description: Describe the component's purpose and where it's used in the product
+    validations:
+      required: true
+
+  - type: input
+    id: figma-link
+    attributes:
+      label: Figma link
+      description: Link to the Figma frame or component
+      placeholder: https://www.figma.com/file/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: variants
+    attributes:
+      label: Intended variants
+      description: List the variants this component needs (e.g. sizes, states, styles)
+      placeholder: |
+        - Size: sm, md, lg
+        - State: default, disabled, error
+    validations:
+      required: true
+
+  - type: textarea
+    id: usage-context
+    attributes:
+      label: Where is this used?
+      description: Which pages, flows, or features use this component?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I've checked the registry — this component doesn't already exist
+          required: true
+        - label: The Figma link is accessible to the team
+          required: true
