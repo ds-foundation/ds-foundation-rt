@@ -71,7 +71,15 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerFormat({
   name: 'ds/tailwind/css-theme',
   format: ({ dictionary }) => {
-    const lines = dictionary.allTokens.map((t) => `  --${t.name}: ${t.value};`);
+    const lines = dictionary.allTokens.map((t) => {
+      // Prefer t.value (set by transforms); fall back to hex from raw $value for DTCG color objects
+      const v = (t.value != null)
+        ? t.value
+        : (typeof t.$value === 'object' && t.$value !== null && 'hex' in t.$value)
+          ? t.$value.hex
+          : String(t.$value);
+      return `  --${t.name}: ${v};`;
+    });
     return `@theme {\n${lines.join('\n')}\n}\n`;
   },
 });
@@ -106,6 +114,13 @@ const PRIMITIVES = [
 ];
 
 const SHARED_TRANSFORMS = ['ts/resolveMath', 'ds/dimension/css', 'ds/color/css', 'name/kebab'];
+
+const TAILWIND_TRANSFORMS = [
+  'ts/resolveMath',
+  'ds/dimension/css',
+  'ds/color/hex-fallback',  // hex only — exclude ds/color/css so $value stays as DTCG object
+  'name/kebab',
+];
 
 // Suppress collisions on DTCG file-level metadata keys ($schema, $description)
 // and on $type at group level — these are harmless and expected when merging files.
@@ -184,7 +199,7 @@ const configs = [
     platforms: {
       tailwind: {
         prefix: 'ds',
-        transforms: [...SHARED_TRANSFORMS, 'ds/color/hex-fallback'],
+        transforms: TAILWIND_TRANSFORMS,
         buildPath: 'build/tailwind/',
         files: [{ destination: 'preset.css', format: 'ds/tailwind/css-theme' }],
       },
