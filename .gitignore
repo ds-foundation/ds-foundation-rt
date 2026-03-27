@@ -27,3 +27,5 @@ apps/storybook/storybook-static/
 
 # Figma Code Connect generated files
 packages/registry/figma-connect/
+template/node_modules
+template/.next

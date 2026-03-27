@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ds-foundation": {
+      "command": "node",
+      "args": ["../../mcp/ds-server/src/index.js"],
+      "env": {
+        "DS_REGISTRY": "../../packages/registry/registry.json"
+      }
+    }
+  }
+}
