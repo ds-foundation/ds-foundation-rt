@@ -67,6 +67,61 @@ StyleDictionary.registerTransform({
   },
 });
 
+// ── Custom transform: DTCG duration object → CSS value ───────────────────────
+StyleDictionary.registerTransform({
+  name: 'ds/duration/css',
+  type: 'value',
+  filter: (t) => t.$type === 'duration',
+  transform: (t) => {
+    const v = t.$value;
+    return typeof v === 'object' && v !== null && 'value' in v && 'unit' in v
+      ? `${v.value}${v.unit}`
+      : String(v);
+  },
+});
+
+// ── Custom transform: DTCG shadow composite object → CSS box-shadow value ─────
+StyleDictionary.registerTransform({
+  name: 'ds/shadow/css',
+  type: 'value',
+  filter: (t) => t.$type === 'shadow',
+  transform: (t) => {
+    const v = t.$value;
+    if (typeof v !== 'object' || v === null) return String(v);
+    // Handle array of shadow layers
+    const layers = Array.isArray(v) ? v : [v];
+    return layers
+      .map((layer) => {
+        const ox = typeof layer.offsetX === 'object' ? `${layer.offsetX.value}${layer.offsetX.unit}` : String(layer.offsetX ?? 0);
+        const oy = typeof layer.offsetY === 'object' ? `${layer.offsetY.value}${layer.offsetY.unit}` : String(layer.offsetY ?? 0);
+        const blur = typeof layer.blur === 'object' ? `${layer.blur.value}${layer.blur.unit}` : String(layer.blur ?? 0);
+        const spread = typeof layer.spread === 'object' ? `${layer.spread.value}${layer.spread.unit}` : String(layer.spread ?? 0);
+        const color = layer.color;
+        let colorStr = 'transparent';
+        if (color && typeof color === 'object') {
+          if ('hex' in color && color.hex && color.alpha !== undefined && color.alpha !== 1) {
+            // Use rgba when alpha is not 1
+            const [r, g, b] = (color.components ?? [0, 0, 0]).map((c) => Math.round(Number(c) * 255));
+            colorStr = `rgba(${r},${g},${b},${color.alpha})`;
+          } else if ('hex' in color && color.hex) {
+            colorStr = color.hex;
+          } else if (color.colorSpace === 'srgb' && Array.isArray(color.components)) {
+            const [r, g, b] = color.components.map((c) => Math.round(Number(c) * 255));
+            const a = color.alpha !== undefined ? color.alpha : 1;
+            colorStr = a === 1
+              ? `rgb(${r},${g},${b})`
+              : `rgba(${r},${g},${b},${a})`;
+          }
+        } else if (typeof color === 'string') {
+          colorStr = color;
+        }
+        const inset = layer.inset ? 'inset ' : '';
+        return `${inset}${ox} ${oy} ${blur} ${spread} ${colorStr}`;
+      })
+      .join(', ');
+  },
+});
+
 // ── Custom format: Tailwind v4 @theme block ───────────────────────────────────
 StyleDictionary.registerFormat({
   name: 'ds/tailwind/css-theme',
@@ -124,11 +179,13 @@ const PRIMITIVES = [
   'src/primitives/grid.tokens.json',
 ];
 
-const SHARED_TRANSFORMS = ['ts/resolveMath', 'ds/dimension/css', 'ds/color/css', 'name/kebab'];
+const SHARED_TRANSFORMS = ['ts/resolveMath', 'ds/dimension/css', 'ds/duration/css', 'ds/shadow/css', 'ds/color/css', 'name/kebab'];
 
 const TAILWIND_TRANSFORMS = [
   'ts/resolveMath',
   'ds/dimension/css',
+  'ds/duration/css',
+  'ds/shadow/css',
   'ds/color/hex-fallback',  // hex only — ds/color/css is excluded so t.value stays unset for colors;
   // the format's own fallback reads hex directly from t.$value
   'name/kebab',
