@@ -14,7 +14,7 @@ export function DetailCard({ title, children }: DetailCardProps) {
         borderRadius: 'var(--ds-radius-lg)',
         backgroundColor: 'var(--ds-color-surface-default)',
         border: BORDER_MUTED,
-        padding: '16px',
+        padding: 'var(--ds-spacing-4)',
       }}
     >
       <h4
@@ -24,9 +24,9 @@ export function DetailCard({ title, children }: DetailCardProps) {
           color: 'var(--ds-color-brand-primary)',
           letterSpacing: 'var(--ds-font-tracking-wide)',
           textTransform: 'uppercase',
-          paddingBottom: '8px',
+          paddingBottom: 'var(--ds-spacing-2)',
           borderBottom: BORDER_MUTED,
-          margin: '0 0 12px 0',
+          margin: '0 0 var(--ds-spacing-3) 0',
         }}
       >
         {title}

@@ -53,18 +53,6 @@ const ComponentSpec = s.object({
   content: s.mdx(),
 });
 
-const FoundationSpec = s.object({
-  id:       s.string(),
-  type:     s.literal('foundation'),
-  category: s.enum(['color', 'typography', 'spacing', 'grid', 'motion', 'radius', 'shadow', 'z-index']),
-  version:  s.string(),
-  status:   s.enum(['draft', 'beta', 'stable', 'deprecated']),
-  'token-count': s.number().optional(),
-  'ai-prompt': s.string(),
-  figma: s.object({ 'node-id': s.string() }).optional(),
-  content: s.mdx(),
-});
-
 export default defineConfig({
   root: '.',
   output: {
@@ -78,11 +66,6 @@ export default defineConfig({
       name:    'Component',
       pattern: 'components/**/*.mdx',
       schema:  ComponentSpec,
-    },
-    foundations: {
-      name:    'Foundation',
-      pattern: 'foundations/**/*.mdx',
-      schema:  FoundationSpec,
     },
   },
 });

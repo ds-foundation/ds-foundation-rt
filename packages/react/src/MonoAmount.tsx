@@ -14,9 +14,9 @@ export interface MonoAmountProps {
 const SYMBOL: Record<string, string> = { USD: '$', EUR: '€', GBP: '£' };
 
 const FONT_SIZE: Record<string, string> = {
-  sm: 'var(--font-size-xs)',
-  md: 'var(--font-size-sm)',
-  lg: 'var(--font-size-md)',
+  sm: 'var(--ds-font-size-xs)',
+  md: 'var(--ds-font-size-sm)',
+  lg: 'var(--ds-font-size-md)',
 };
 
 const COLOR_MAP: Record<AmountColor, string> = {
@@ -43,7 +43,7 @@ export function MonoAmount({
 }: MonoAmountProps) {
   const interactive = !!onProvenanceTap;
   const style: React.CSSProperties = {
-    fontFamily: 'var(--font-mono)',
+    fontFamily: 'var(--ds-font-family-mono)',
     fontVariantNumeric: 'tabular-nums',
     fontSize: FONT_SIZE[size],
     color: COLOR_MAP[color],
