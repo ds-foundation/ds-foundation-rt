@@ -1,0 +1,71 @@
+---
+title: Using DS in Claude Code
+---
+
+# Using DS Foundation in Claude Code
+
+The DS has a built-in MCP server that lets Claude Code query the design system registry in real time — components, tokens, adapter mappings, and AI prompts.
+
+## Start the MCP server
+
+```bash
+cd ~/Documents/GitHub/ds-foundation-rt
+npm run dev --filter=@ds-foundation/mcp-server
+# Runs at localhost:3100
+```
+
+## Available tools
+
+| Tool | What it does |
+|------|-------------|
+| `list_components` | List all registry components with status and variants |
+| `get_component` | Full spec for a component: props, ARIA, adapter mappings, ai-prompt |
+| `resolve_token` | Look up a token's CSS var name and current value |
+| `validate_component` | Check generated code against a component's spec |
+
+## Example: generate a component
+
+In Claude Code, ask:
+
+> "Use the DS registry to check what component I should use for showing a settlement urgency level, then implement it."
+
+Claude will:
+1. Call `list_components` to find `urgency-badge`
+2. Call `get_component` with `id: "urgency-badge"` to get the spec and ai-prompt
+3. Implement using the spec's variants, ARIA requirements, and token constraints
+
+## Example: validate generated code
+
+> "Validate this MonoAmount implementation against the DS registry."
+
+Claude will call `validate_component` with the code, checking for hardcoded colours, missing variants, and missing ARIA attributes.
+
+## Example: resolve a token
+
+> "What is the CSS var and value for color.brand.primary?"
+
+Claude calls `resolve_token` with `path: "color.brand.primary"` and gets:
+```json
+{
+  "path": "color.brand.primary",
+  "cssVar": "--ds-color-brand-primary",
+  "usage": "var(--ds-color-brand-primary)",
+  "value": "#003087"
+}
+```
+
+## Add to Claude Code settings
+
+Add to your `~/.claude/settings.json` to start the server automatically:
+
+```json
+{
+  "mcpServers": {
+    "ds-foundation": {
+      "command": "node",
+      "args": ["path/to/ds-foundation-rt/mcp/ds-server/src/index.ts"],
+      "env": {}
+    }
+  }
+}
+```

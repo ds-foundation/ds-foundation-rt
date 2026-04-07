@@ -1,0 +1,82 @@
+---
+title: Token Reference
+---
+
+# Token Reference
+
+All visual values in DS Foundation come from semantic tokens. Never hardcode hex values or pixel values.
+
+## How to use
+
+```css
+/* In CSS */
+color: var(--ds-color-text-primary);
+padding: var(--ds-spacing-4);
+
+/* In React inline styles */
+style={{ color: 'var(--ds-color-text-primary)', padding: 'var(--ds-spacing-4)' }}
+```
+
+## Colour — Semantic
+
+| Token | Use |
+|-------|-----|
+| `--ds-color-text-primary` | Body text, headings |
+| `--ds-color-text-secondary` | Supporting text, labels |
+| `--ds-color-text-tertiary` | Muted text, placeholders |
+| `--ds-color-surface-default` | Page background |
+| `--ds-color-surface-raised` | Card backgrounds, raised elements |
+| `--ds-color-surface-sunken` | Recessed areas, inputs |
+| `--ds-color-border-default` | Standard borders |
+| `--ds-color-brand-primary` | Primary brand action colour |
+
+## Colour — Feedback
+
+| Token group | States |
+|-------------|--------|
+| `--ds-color-feedback-info-{text,bg,border,icon}` | Informational |
+| `--ds-color-feedback-success-{text,bg,border,icon}` | Success |
+| `--ds-color-feedback-warning-{text,bg,border,icon}` | Warning |
+| `--ds-color-feedback-error-{text,bg,border,icon}` | Error / critical |
+
+## Spacing
+
+Uses a 4px base unit. Tokens are named by their rem value × 4.
+
+| Token | Value | Pixels |
+|-------|-------|--------|
+| `--ds-spacing-1` | 0.25rem | 4px |
+| `--ds-spacing-2` | 0.5rem | 8px |
+| `--ds-spacing-3` | 0.75rem | 12px |
+| `--ds-spacing-4` | 1rem | 16px |
+| `--ds-spacing-6` | 1.5rem | 24px |
+| `--ds-spacing-8` | 2rem | 32px |
+
+## Layout (density-aware)
+
+These scale automatically when compact/spacious density is added.
+
+| Token | Comfortable | Use |
+|-------|-------------|-----|
+| `--ds-layout-card-padding` | 1rem (16px) | Card/container internal padding |
+| `--ds-layout-card-padding-sm` | 0.75rem (12px) | Compact card padding |
+| `--ds-layout-section-gap` | 1.5rem (24px) | Gap between major sections |
+
+## Typography
+
+| Token | Use |
+|-------|-----|
+| `--ds-font-size-2xs` | Micro labels, badges |
+| `--ds-font-size-xs` | Small supporting text |
+| `--ds-font-size-sm` | Body secondary |
+| `--ds-font-size-md` | Body primary |
+| `--ds-font-family-mono` | Amounts, codes, IDs |
+
+## Radius
+
+| Token | Value |
+|-------|-------|
+| `--ds-radius-sm` | Small inputs, skeleton |
+| `--ds-radius-md` | Standard |
+| `--ds-radius-lg` | Cards, buttons |
+| `--ds-radius-full` | Pills, badges |
