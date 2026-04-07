@@ -40,11 +40,11 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
           alignItems: 'center',
           gap: 4,
           padding: '2px 8px',
-          borderRadius: 'var(--radius-full)',
+          borderRadius: 'var(--ds-radius-full)',
           backgroundColor: bg,
           color: text,
           border: `1px solid ${border}`,
-          fontSize: 'var(--font-size-2xs)',
+          fontSize: 'var(--ds-font-size-2xs)',
           fontWeight: 700,
           letterSpacing: '0.08em',
           lineHeight: 1.4,
@@ -63,7 +63,7 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
             cursor: 'pointer',
             color: text,
             padding: '0 2px',
-            fontSize: 'var(--font-size-xs)',
+            fontSize: 'var(--ds-font-size-xs)',
           }}
         >
           ↺
