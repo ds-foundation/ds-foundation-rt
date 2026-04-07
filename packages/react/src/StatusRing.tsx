@@ -4,7 +4,7 @@ import { useReducedMotion } from './utils/useReducedMotion';
 
 export type Urgency = 'critical' | 'watch' | 'clear' | 'skip';
 
-export interface StatusRingProps {
+export interface StatusRingProps extends React.HTMLAttributes<HTMLSpanElement> {
   urgency: Urgency;
   size?: 'sm' | 'md';
   pulse?: boolean;
@@ -29,25 +29,21 @@ const COLOR: Record<Urgency, { dot: string; ring: string }> = {
   },
 };
 
-export function StatusRing({ urgency, size = 'md', pulse = false }: StatusRingProps) {
+export function StatusRing({ urgency, size = 'md', pulse = false, style, ...rest }: StatusRingProps) {
   const reducedMotion = useReducedMotion();
   const px = size === 'sm' ? 8 : 10;
   const { dot, ring } = COLOR[urgency];
-  return (
-    <span
-      aria-hidden="true"
-      style={{
-        display: 'inline-block',
-        width: px,
-        height: px,
-        borderRadius: '9999px',
-        backgroundColor: dot,
-        boxShadow: `0 0 0 3px ${ring}`,
-        flexShrink: 0,
-        ...(pulse && !reducedMotion
-          ? { animation: 'pulse-ring var(--ds-motion-duration-deliberate) ease-in-out infinite' }
-          : {}),
-      }}
-    />
-  );
+  const internalStyle: React.CSSProperties = {
+    display: 'inline-block',
+    width: px,
+    height: px,
+    borderRadius: '9999px',
+    backgroundColor: dot,
+    boxShadow: `0 0 0 3px ${ring}`,
+    flexShrink: 0,
+    ...(pulse && !reducedMotion
+      ? { animation: 'pulse-ring var(--ds-motion-duration-deliberate) ease-in-out infinite' }
+      : {}),
+  };
+  return <span aria-hidden="true" {...rest} style={{ ...internalStyle, ...style }} />;
 }

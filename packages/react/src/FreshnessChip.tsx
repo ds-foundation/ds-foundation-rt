@@ -1,8 +1,9 @@
 // @ds-component: freshness-chip | @ds-version: 0.1.0
+import React from 'react';
 
 export type FreshnessState = 'fresh' | 'watch' | 'stale';
 
-export interface FreshnessChipProps {
+export interface FreshnessChipProps extends React.HTMLAttributes<HTMLSpanElement> {
   state: FreshnessState;
   timestamp: Date;
   onRefresh?: () => void;
@@ -23,8 +24,10 @@ function formatRelativeTime(isoString: string): string {
   return `${diffHr}h ago`;
 }
 
-export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProps) {
-  if (state === 'fresh') return <span aria-live="polite" style={{ display: 'none' }} />;
+export function FreshnessChip({ state, timestamp, onRefresh, style, ...rest }: FreshnessChipProps) {
+  if (state === 'fresh') {
+    return <span aria-live="polite" {...rest} style={{ display: 'none', ...style }} />;
+  }
 
   const isStale = state === 'stale';
   const bg     = isStale ? 'var(--ds-color-feedback-error-bg)'     : 'var(--ds-color-feedback-warning-bg)';
@@ -33,7 +36,7 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
   const label  = isStale ? 'Stale' : 'Watch';
 
   return (
-    <span aria-live="polite" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+    <span aria-live="polite" {...rest} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, ...style }}>
       <span
         style={{
           display: 'inline-flex',

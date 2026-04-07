@@ -4,7 +4,7 @@ import { useReducedMotion } from './utils/useReducedMotion';
 
 export type WindowStatus = 'open' | 'closing' | 'closed';
 
-export interface BankingWindowDotProps {
+export interface BankingWindowDotProps extends React.HTMLAttributes<HTMLSpanElement> {
   status: WindowStatus;
   size?: number;
 }
@@ -15,22 +15,18 @@ const DOT_COLOR: Record<WindowStatus, string> = {
   closed:  'var(--ds-color-text-tertiary)',
 };
 
-export function BankingWindowDot({ status, size = 6 }: BankingWindowDotProps) {
+export function BankingWindowDot({ status, size = 6, style, ...rest }: BankingWindowDotProps) {
   const reducedMotion = useReducedMotion();
-  return (
-    <span
-      aria-hidden="true"
-      style={{
-        display: 'inline-block',
-        width: size,
-        height: size,
-        borderRadius: '50%',
-        backgroundColor: DOT_COLOR[status],
-        flexShrink: 0,
-        ...(status === 'closing' && !reducedMotion
-          ? { animation: 'pulse-ring var(--ds-motion-duration-deliberate) ease-in-out infinite' }
-          : {}),
-      }}
-    />
-  );
+  const internalStyle: React.CSSProperties = {
+    display: 'inline-block',
+    width: size,
+    height: size,
+    borderRadius: '50%',
+    backgroundColor: DOT_COLOR[status],
+    flexShrink: 0,
+    ...(status === 'closing' && !reducedMotion
+      ? { animation: 'pulse-ring var(--ds-motion-duration-deliberate) ease-in-out infinite' }
+      : {}),
+  };
+  return <span aria-hidden="true" {...rest} style={{ ...internalStyle, ...style }} />;
 }
