@@ -15,7 +15,7 @@ export const DetailCard = React.forwardRef<HTMLDivElement, DetailCardProps>(
       borderRadius: 'var(--ds-radius-lg)',
       backgroundColor: 'var(--ds-color-surface-default)',
       border: BORDER_MUTED,
-      padding: 'var(--ds-spacing-4)',
+      padding: 'var(--ds-layout-card-padding)',
     };
 
     if (isLoading) {

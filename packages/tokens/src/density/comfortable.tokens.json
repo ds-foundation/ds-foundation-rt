@@ -18,5 +18,20 @@
       "lg":  { "$value": { "value": 1.25, "unit": "rem" } },
       "xl":  { "$value": { "value": 1.5,  "unit": "rem" } }
     }
+  },
+  "layout": {
+    "$type": "dimension",
+    "card-padding": {
+      "$value": { "value": 1, "unit": "rem" },
+      "$description": "Standard card/container internal padding (16px). Scales with density."
+    },
+    "card-padding-sm": {
+      "$value": { "value": 0.75, "unit": "rem" },
+      "$description": "Compact card internal padding (12px)."
+    },
+    "section-gap": {
+      "$value": { "value": 1.5, "unit": "rem" },
+      "$description": "Gap between major layout sections (24px)."
+    }
   }
 }
