@@ -1,4 +1,4 @@
-// @ds-component: mono-amount | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: mono-amount | @ds-version: 0.1.0
 import React from 'react';
 
 export type AmountColor = 'default' | 'success' | 'warning' | 'error' | 'muted' | 'brand';

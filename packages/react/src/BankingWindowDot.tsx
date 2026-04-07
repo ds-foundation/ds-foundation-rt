@@ -1,4 +1,4 @@
-// @ds-component: banking-window-dot | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: banking-window-dot | @ds-version: 0.1.0
 
 export type WindowStatus = 'open' | 'closing' | 'closed';
 
@@ -25,7 +25,7 @@ export function BankingWindowDot({ status, size = 6 }: BankingWindowDotProps) {
         backgroundColor: DOT_COLOR[status],
         flexShrink: 0,
         ...(status === 'closing'
-          ? { animation: 'pulse-ring var(--motion-deliberate) ease-in-out infinite' }
+          ? { animation: 'pulse-ring var(--ds-motion-deliberate) ease-in-out infinite' }
           : {}),
       }}
     />

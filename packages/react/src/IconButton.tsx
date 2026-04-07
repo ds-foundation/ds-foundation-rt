@@ -1,4 +1,4 @@
-// @ds-component: icon-button | @ds-adapter: tailwind | @ds-version: 0.2.0
+// @ds-component: icon-button | @ds-version: 0.2.0
 import React from 'react';
 
 export type IconButtonVariant = 'info' | 'success' | 'primary' | 'warning' | 'danger' | 'neutral';

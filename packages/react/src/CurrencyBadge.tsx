@@ -1,4 +1,4 @@
-// @ds-component: currency-badge | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: currency-badge | @ds-version: 0.1.0
 
 export interface CurrencyBadgeProps {
   currency: 'USD' | 'EUR' | 'GBP';
@@ -11,12 +11,12 @@ export function CurrencyBadge({ currency }: CurrencyBadgeProps) {
       style={{
         display: 'inline-block',
         padding: '2px 6px',
-        borderRadius: 'var(--radius-full)',
+        borderRadius: 'var(--ds-radius-full)',
         backgroundColor: 'var(--ds-color-surface-sunken)',
         color: 'var(--ds-color-text-secondary)',
         border: '1px solid var(--ds-color-border-default)',
-        fontFamily: 'var(--font-mono)',
-        fontSize: 'var(--font-size-2xs)',
+        fontFamily: 'var(--ds-font-family-mono)',
+        fontSize: 'var(--ds-font-size-2xs)',
         fontWeight: 700,
         letterSpacing: '0.05em',
         lineHeight: 1.4,

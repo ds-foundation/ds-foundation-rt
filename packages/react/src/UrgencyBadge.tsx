@@ -1,4 +1,4 @@
-// @ds-component: urgency-badge | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: urgency-badge | @ds-version: 0.1.0
 import type { Urgency } from './StatusRing';
 
 export type { Urgency };
@@ -47,11 +47,11 @@ export function UrgencyBadge({ urgency, label }: UrgencyBadgeProps) {
       style={{
         display: 'inline-block',
         padding: '2px 8px',
-        borderRadius: 'var(--radius-full)',
+        borderRadius: 'var(--ds-radius-full)',
         backgroundColor: s.bg,
         color: s.text,
         border: `1px solid ${s.border}`,
-        fontSize: 'var(--font-size-2xs)',
+        fontSize: 'var(--ds-font-size-2xs)',
         fontWeight: 700,
         letterSpacing: '0.08em',
         lineHeight: 1.4,

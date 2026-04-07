@@ -1,4 +1,4 @@
-// @ds-component: detail-card | @ds-adapter: tailwind | @ds-version: 0.2.0
+// @ds-component: detail-card | @ds-version: 0.2.0
 
 const BORDER_MUTED = '1px solid color-mix(in srgb, var(--ds-color-border-default) 50%, transparent)';
 

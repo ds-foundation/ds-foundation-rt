@@ -1,4 +1,4 @@
-// @ds-component: status-ring | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: status-ring | @ds-version: 0.1.0
 
 export type Urgency = 'critical' | 'watch' | 'clear' | 'skip';
 
@@ -42,7 +42,7 @@ export function StatusRing({ urgency, size = 'md', pulse = false }: StatusRingPr
         boxShadow: `0 0 0 3px ${ring}`,
         flexShrink: 0,
         ...(pulse
-          ? { animation: 'pulse-ring var(--motion-deliberate) ease-in-out infinite' }
+          ? { animation: 'pulse-ring var(--ds-motion-deliberate) ease-in-out infinite' }
           : {}),
       }}
     />

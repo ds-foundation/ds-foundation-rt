@@ -1,4 +1,4 @@
-// @ds-component: freshness-chip | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: freshness-chip | @ds-version: 0.1.0
 
 export type FreshnessState = 'fresh' | 'watch' | 'stale';
 

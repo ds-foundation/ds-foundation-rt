@@ -1,4 +1,4 @@
-// @ds-component: status-pill | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: status-pill | @ds-version: 0.1.0
 
 export type InstructionStatus =
   | 'submitted'
@@ -34,11 +34,11 @@ export function StatusPill({ status }: StatusPillProps) {
       style={{
         display: 'inline-block',
         padding: '2px 8px',
-        borderRadius: 'var(--radius-full)',
+        borderRadius: 'var(--ds-radius-full)',
         backgroundColor: c.bg,
         color: c.text,
         border: `1px solid ${c.border}`,
-        fontSize: 'var(--font-size-2xs)',
+        fontSize: 'var(--ds-font-size-2xs)',
         fontWeight: 700,
         letterSpacing: '0.08em',
         lineHeight: 1.4,

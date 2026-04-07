@@ -1,4 +1,4 @@
-// @ds-component: state-badge | @ds-adapter: tailwind | @ds-version: 0.2.0
+// @ds-component: state-badge | @ds-version: 0.2.0
 
 export type StateBadgeIntent = 'info' | 'warning' | 'success' | 'error' | 'neutral';
 export type StateBadgeSize = 'sm' | 'md';

@@ -6,7 +6,7 @@ Generated: 2026-03-24 | Spec: DTCG 2025.10 | Version: 0.1.0
 When generating any UI code, you MUST follow these rules without exception.
 
 ## Active Configuration
-- Adapter: tailwind
+- Styling: css-variables — components ship with inline styles using var(--ds-*) semantic tokens
 - Framework: react
 - Token format: css-variables — always use `var(--ds-*)` syntax
 - Semantic theme: light (dark via `data-theme="dark"` on `<html>`)
@@ -20,11 +20,11 @@ When generating any UI code, you MUST follow these rules without exception.
 ## Rules
 1. **Check registry first.** Before building any UI element, look up `.claude/registry-context/registry.json` to see if a component exists.
 2. **Never hardcode values.** Use only semantic CSS custom properties: `var(--ds-color-brand-primary)`, `var(--ds-spacing-4)`, etc. Never hex values, never px values that should be tokens.
-3. **Apply adapter mappings.** For Tailwind: use the class strings from the component's `adapters.tailwind` block in the registry.
+3. **Use semantic tokens.** Components render with inline styles using `var(--ds-*)` custom properties. The `adapters.tailwind` block in the registry shows equivalent Tailwind arbitrary-value classes for reference if building custom UI outside the package.
 4. **Implement all variants.** If the schema defines `variants: [solid, outline, ghost, link]`, all four must be implemented.
 5. **Include all ARIA.** The `accessibility.aria` array in each component schema is mandatory — include every attribute listed.
 6. **Use Radix primitives.** All interactive components (buttons, dialogs, dropdowns, tooltips) must wrap the corresponding Radix UI primitive.
-7. **Annotate outputs.** Add a comment at the top of every generated component file: `// @ds-component: {id} | @ds-adapter: tailwind | @ds-version: {version}`
+7. **Annotate outputs.** Add a comment at the top of every generated component file: `// @ds-component: {id} | @ds-version: {version}`
 8. **Propose before building custom.** If a component doesn't exist in the registry, output a schema stub first and wait for confirmation before implementing.
 
 ## Skills
