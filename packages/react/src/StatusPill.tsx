@@ -1,4 +1,5 @@
-// @ds-component: status-pill | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: status-pill | @ds-version: 0.1.0
+import React from 'react';
 
 export type InstructionStatus =
   | 'submitted'
@@ -10,7 +11,7 @@ export type InstructionStatus =
   | 'failed'
   | 'rejected';
 
-export interface StatusPillProps {
+export interface StatusPillProps extends React.HTMLAttributes<HTMLSpanElement> {
   status: InstructionStatus;
 }
 
@@ -25,26 +26,32 @@ const CONFIG: Record<InstructionStatus, { label: string; bg: string; text: strin
   rejected:        { label: 'Rejected',      bg: 'var(--ds-color-feedback-error-bg)',    text: 'var(--ds-color-feedback-error-text)',    border: 'var(--ds-color-feedback-error-border)' },
 };
 
-export function StatusPill({ status }: StatusPillProps) {
-  const c = CONFIG[status];
-  return (
-    <span
-      role="status"
-      aria-label={`Status: ${c.label}`}
-      style={{
-        display: 'inline-block',
-        padding: '2px 8px',
-        borderRadius: 'var(--radius-full)',
-        backgroundColor: c.bg,
-        color: c.text,
-        border: `1px solid ${c.border}`,
-        fontSize: 'var(--font-size-2xs)',
-        fontWeight: 700,
-        letterSpacing: '0.08em',
-        lineHeight: 1.4,
-      }}
-    >
-      {c.label}
-    </span>
-  );
-}
+export const StatusPill = React.forwardRef<HTMLSpanElement, StatusPillProps>(
+  function StatusPill({ status, style, ...rest }, ref) {
+    const c = CONFIG[status];
+    const internalStyle: React.CSSProperties = {
+      display: 'inline-block',
+      padding: '2px 8px',
+      borderRadius: 'var(--ds-radius-full)',
+      backgroundColor: c.bg,
+      color: c.text,
+      border: `1px solid ${c.border}`,
+      fontSize: 'var(--ds-font-size-2xs)',
+      fontWeight: 700,
+      letterSpacing: '0.08em',
+      lineHeight: 1.4,
+    };
+    return (
+      <span
+        role="status"
+        aria-label={`Status: ${c.label}`}
+        {...rest}
+        ref={ref}
+        style={{ ...internalStyle, ...style }}
+      >
+        {c.label}
+      </span>
+    );
+  }
+);
+StatusPill.displayName = 'StatusPill';

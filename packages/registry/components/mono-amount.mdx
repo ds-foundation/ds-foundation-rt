@@ -85,3 +85,21 @@ import { MonoAmount, CurrencyBadge } from '@ds-foundation/react';
 ## Accessibility
 
 When `onProvenanceTap` is provided, the element renders with `role="button"`, `tabIndex={0}`, and an `aria-label` describing the value and action. Keyboard users can activate it with `Enter` or `Space`.
+
+## Composition
+
+Pair `MonoAmount` with `CurrencyBadge` to show denomination explicitly. Pair with `StateBadge` to show settlement status alongside the amount.
+
+```tsx
+// Amount + denomination
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+  <MonoAmount value={4500000} currency="EUR" size="lg" color="success" />
+  <CurrencyBadge currency="EUR" />
+</span>
+
+// Amount + status in a settlement row
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+  <MonoAmount value={1250000} currency="USD" />
+  <StateBadge state="Confirmed" intent="success" size="sm" />
+</span>
+```

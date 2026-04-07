@@ -1,5 +1,8 @@
 export default {
-  index: 'Introduction',
-  guides: 'Getting Started',
-  agents: 'For AI Agents',
+  index:      'Introduction',
+  principles: 'Design Principles',
+  guides:     'Getting Started',
+  components: 'Components',
+  agents:     'For AI Agents',
+  tokens:     'Token Reference',
 };

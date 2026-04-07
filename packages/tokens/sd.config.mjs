@@ -277,7 +277,7 @@ const configs = [
   // Flat JSON (for MCP + AI context)
   {
     ...LOG_CONFIG,
-    source: [...PRIMITIVES, 'src/semantic/light/color.tokens.json'],
+    source: [...PRIMITIVES, 'src/semantic/light/color.tokens.json', 'src/density/comfortable.tokens.json'],
     preprocessors: ['tokens-studio'],
     platforms: {
       json: {

@@ -6,7 +6,7 @@ Generated: 2026-03-24 | Spec: DTCG 2025.10 | Version: 0.1.0
 When generating any UI code, you MUST follow these rules without exception.
 
 ## Active Configuration
-- Adapter: tailwind
+- Styling: css-variables — components ship with inline styles using var(--ds-*) semantic tokens
 - Framework: react
 - Token format: css-variables — always use `var(--ds-*)` syntax
 - Semantic theme: light (dark via `data-theme="dark"` on `<html>`)
@@ -20,11 +20,11 @@ When generating any UI code, you MUST follow these rules without exception.
 ## Rules
 1. **Check registry first.** Before building any UI element, look up `.claude/registry-context/registry.json` to see if a component exists.
 2. **Never hardcode values.** Use only semantic CSS custom properties: `var(--ds-color-brand-primary)`, `var(--ds-spacing-4)`, etc. Never hex values, never px values that should be tokens.
-3. **Apply adapter mappings.** For Tailwind: use the class strings from the component's `adapters.tailwind` block in the registry.
+3. **Use semantic tokens.** Components render with inline styles using `var(--ds-*)` custom properties. The `adapters.tailwind` block in the registry shows equivalent Tailwind arbitrary-value classes for reference if building custom UI outside the package.
 4. **Implement all variants.** If the schema defines `variants: [solid, outline, ghost, link]`, all four must be implemented.
 5. **Include all ARIA.** The `accessibility.aria` array in each component schema is mandatory — include every attribute listed.
 6. **Use Radix primitives.** All interactive components (buttons, dialogs, dropdowns, tooltips) must wrap the corresponding Radix UI primitive.
-7. **Annotate outputs.** Add a comment at the top of every generated component file: `// @ds-component: {id} | @ds-adapter: tailwind | @ds-version: {version}`
+7. **Annotate outputs.** Add a comment at the top of every generated component file: `// @ds-component: {id} | @ds-version: {version}`
 8. **Propose before building custom.** If a component doesn't exist in the registry, output a schema stub first and wait for confirmation before implementing.
 
 ## Skills
@@ -33,3 +33,22 @@ When generating any UI code, you MUST follow these rules without exception.
 - Validate output:     `.claude/skills/registry-validation.md`
 - Accessibility audit: `.claude/skills/accessibility-audit.md`
 - New spec stub:       `.claude/skills/new-spec.md`
+
+## Design Principles
+
+Five principles that govern every decision in this system. When in doubt, return to these.
+
+**1. Restraint by default**
+Components are neutral at rest. Colour communicates intent, not decoration. Variants and states activate only when they carry meaning — a button that changes colour on hover is communicating its purpose, not styling itself.
+
+**2. Token-first, always**
+Every visual property — colour, spacing, type, radius, shadow — must come from a semantic `var(--ds-*)` token. There are no exceptions. Hardcoded hex values and arbitrary pixel values are bugs.
+
+**3. Accessible without configuration**
+ARIA attributes, contrast ratios, focus behaviour, and keyboard support are built in. Consuming a component means inheriting its accessibility. Consumers should not have to add ARIA to make a component work.
+
+**4. Composable, not monolithic**
+Components are small and do one thing. Complex UI is built by combining components. A component that handles three concerns is three components that haven't been separated yet.
+
+**5. Dark first, light always**
+The system is designed dark. Light mode is an equal first-class variant — not an afterthought, not an override. Both modes pass WCAG AA before any component ships.

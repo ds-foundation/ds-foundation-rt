@@ -1,20 +1,21 @@
-// @ds-component: freshness-chip | @ds-adapter: tailwind | @ds-version: 0.1.0
+// @ds-component: freshness-chip | @ds-version: 0.1.0
+import React from 'react';
 
 export type FreshnessState = 'fresh' | 'watch' | 'stale';
 
-export interface FreshnessChipProps {
+export interface FreshnessChipProps extends React.HTMLAttributes<HTMLSpanElement> {
   state: FreshnessState;
   timestamp: Date;
   onRefresh?: () => void;
 }
 
 /** Thresholds for freshness state derivation (ms) */
-const FRESHNESS_WATCH_MS = 5 * 60 * 1000;   // 5 minutes
-const FRESHNESS_STALE_MS = 15 * 60 * 1000;  // 15 minutes
+export const FRESHNESS_WATCH_MS = 5 * 60 * 1000;   // 5 minutes
+export const FRESHNESS_STALE_MS = 15 * 60 * 1000;  // 15 minutes
 
 /** Format a Date as a relative time string (e.g. "3 min ago") */
-function formatRelativeTime(isoString: string): string {
-  const diffMs = Date.now() - new Date(isoString).getTime();
+function formatRelativeTime(date: Date): string {
+  const diffMs = Date.now() - date.getTime();
   const diffSec = Math.floor(diffMs / 1000);
   if (diffSec < 60) return `${diffSec}s ago`;
   const diffMin = Math.floor(diffSec / 60);
@@ -23,8 +24,10 @@ function formatRelativeTime(isoString: string): string {
   return `${diffHr}h ago`;
 }
 
-export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProps) {
-  if (state === 'fresh') return <span aria-live="polite" style={{ display: 'none' }} />;
+export function FreshnessChip({ state, timestamp, onRefresh, style, ...rest }: FreshnessChipProps) {
+  if (state === 'fresh') {
+    return <span aria-live="polite" {...rest} style={{ display: 'none', ...style }} />;
+  }
 
   const isStale = state === 'stale';
   const bg     = isStale ? 'var(--ds-color-feedback-error-bg)'     : 'var(--ds-color-feedback-warning-bg)';
@@ -33,7 +36,7 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
   const label  = isStale ? 'Stale' : 'Watch';
 
   return (
-    <span aria-live="polite" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+    <span aria-live="polite" {...rest} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, ...style }}>
       <span
         style={{
           display: 'inline-flex',
@@ -50,7 +53,7 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
           lineHeight: 1.4,
         }}
       >
-        {label} · {formatRelativeTime(timestamp.toISOString())}
+        {label} · {formatRelativeTime(timestamp)}
       </span>
       {isStale && onRefresh && (
         <button
@@ -74,9 +77,14 @@ export function FreshnessChip({ state, timestamp, onRefresh }: FreshnessChipProp
 }
 
 /** Derive FreshnessState from a timestamp */
-export function deriveFreshnessState(lastUpdatedAt: Date): FreshnessState {
+export function deriveFreshnessState(
+  lastUpdatedAt: Date,
+  options?: { watchThresholdMs?: number; staleThresholdMs?: number }
+): FreshnessState {
+  const watchMs = options?.watchThresholdMs ?? FRESHNESS_WATCH_MS;
+  const staleMs = options?.staleThresholdMs ?? FRESHNESS_STALE_MS;
   const age = Date.now() - lastUpdatedAt.getTime();
-  if (age >= FRESHNESS_STALE_MS) return 'stale';
-  if (age >= FRESHNESS_WATCH_MS) return 'watch';
+  if (age >= staleMs) return 'stale';
+  if (age >= watchMs) return 'watch';
   return 'fresh';
 }

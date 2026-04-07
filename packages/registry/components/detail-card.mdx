@@ -43,3 +43,19 @@ import { DetailCard } from '@ds-foundation/react';
 ## Accessibility
 
 `h4` provides semantic heading structure. Title colour (`--ds-color-brand-primary`) meets WCAG 1.4.3 contrast requirements against the card background.
+
+## Composition
+
+`DetailCard` is a container — compose it with `MonoAmount`, `StateBadge`, and `StatusPill` inside.
+
+```tsx
+<DetailCard title="Net Position">
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+      <MonoAmount value={4200000} currency="USD" size="lg" />
+      <CurrencyBadge currency="USD" />
+    </span>
+    <StateBadge state="Confirmed" intent="success" size="sm" />
+  </div>
+</DetailCard>
+```
