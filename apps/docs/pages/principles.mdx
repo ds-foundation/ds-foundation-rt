@@ -1,0 +1,47 @@
+---
+title: Design Principles
+---
+
+# Design Principles
+
+Five principles that govern every decision in DS Foundation. When a design decision is unclear, these are the tiebreaker.
+
+---
+
+## 1. Restraint by default
+
+Components are neutral at rest. Colour communicates intent, not decoration. Variants and states activate only when they carry meaning.
+
+A button that changes colour on hover is communicating its purpose. An element that uses colour to decorate is noise.
+
+---
+
+## 2. Token-first, always
+
+Every visual property — colour, spacing, type, radius, shadow — must come from a semantic `var(--ds-*)` token. No exceptions.
+
+Hardcoded hex values and arbitrary pixel values are bugs. They break theming, break density, and break dark mode.
+
+---
+
+## 3. Accessible without configuration
+
+ARIA attributes, contrast ratios, focus behaviour, and keyboard support are built in. Consuming a component means inheriting its accessibility.
+
+Consumers should never have to add ARIA to make a component work correctly.
+
+---
+
+## 4. Composable, not monolithic
+
+Components are small and do one thing. Complex UI is built by combining components, not by building components that do three things.
+
+If a component is handling more than one concern, it should be two components.
+
+---
+
+## 5. Dark first, light always
+
+The system is designed dark. Light mode is a first-class equal variant — not an afterthought or a colour-inversion.
+
+Both modes must pass WCAG AA before any component ships. Testing in light mode is not optional.
