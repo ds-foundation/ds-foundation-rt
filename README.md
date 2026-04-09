@@ -1,97 +1,132 @@
 # DS Foundation
 
-Token-first, registry-driven design system for the Ripple Treasury product team. Ships semantic design tokens, 80+ React components, a component registry with accessibility specs, and an MCP server that makes everything queryable from Claude Code.
+Design system for the Ripple Treasury product — tokens, components, and theme infrastructure in one package.
 
-**Designers** spec components in the registry and review them in Storybook.  
-**Engineers** install packages, consume tokens and components, and use the MCP server for AI-assisted development.
+## Packages
 
----
-
-## What's in here
-
-| Package | What it gives you |
+| Package | Purpose |
 |---|---|
-| `@ds-foundation/tokens` | CSS custom properties (`--ds-*`), Tailwind theme block, SCSS variables, JS exports — DTCG 2025.10 |
-| `@ds-foundation/react` | 80+ typed, accessible React components built on those tokens |
-| `@ds-foundation/core` | Framework-agnostic token contracts and adapter types |
-| `@ds-foundation/registry` | MDX component specs: variants, ARIA requirements, and AI prompts |
-| `@ds-foundation/mcp-server` | MCP server — lets Claude Code query the registry and resolve tokens in real time |
-| `apps/docs` | Documentation site (Next.js 15 + Nextra) |
-| `apps/storybook` | Component development and visual review hub (Storybook 8) |
-| `template/` | Next.js 15 starter pre-wired to the full design system |
+| `@ds-foundation/react` | React component library — atoms, molecules, organisms, treasury |
+| `@ds-foundation/tokens` | Design tokens — CSS custom properties, Tailwind preset, JS exports (DTCG 2025.10) |
+| `apps/storybook` | Component development and visual review |
+| `apps/docs` | Documentation site |
 
----
-
-## For designers
-
-### See what exists
-
-Every component has a Storybook story showing all variants and states. PRs automatically publish a live Storybook preview via Chromatic — the link appears in the PR checks.
-
-To browse locally:
+## Install
 
 ```bash
-git clone git@github.com:ds-foundation/ds-foundation-rt.git
-cd ds-foundation-rt
-npm install && npm run dev:storybook
-# Opens at http://localhost:6006
+npm install @ds-foundation/react
 ```
 
-To browse component specs without running anything, look in `packages/registry/components/` — each `.mdx` file is the canonical spec for one component.
+```ts
+import { Button, DesignSystemProvider } from '@ds-foundation/react'
+import '@ds-foundation/react/styles.css'
+```
 
-### Figma and tokens
+That's the entire setup. No additional configuration, no peer deps to manage.
 
-Token values are synced to Figma automatically via the `sync-figma-tokens` CI workflow on every push to `main`. The Figma library stays in sync with the token source — edit tokens here, not in Figma directly.
+## Components
 
-### Token reference
+Components are organized into four layers:
 
-Tokens are organized by semantic intent — what they're *for*, not what they look like. Never hardcode a color, spacing value, or type size that has a token counterpart.
+```
+atoms/       Button, Input, Badge, Checkbox, Label, Switch, Spinner, Typography…
+molecules/   Card, Form, Select, Tabs, Tooltip, DatePicker, Pagination…
+organisms/   Dialog, Drawer, NavigationMenu, Table, Accordion, Command…
+treasury/    MonoAmount, CurrencyBadge, StatusPill, KpiCard, FreshnessChip…
+```
 
-| Category | What it covers |
+All components consume `--ds-*` CSS custom properties — they respond to light, dark, and wireframe themes automatically.
+
+## Themes
+
+Wrap your app with `DesignSystemProvider`:
+
+```tsx
+import { DesignSystemProvider } from '@ds-foundation/react'
+
+export default function App({ children }) {
+  return (
+    <DesignSystemProvider defaultTheme="light">
+      {children}
+    </DesignSystemProvider>
+  )
+}
+```
+
+Available themes: `'light'` | `'dark'` | `'wireframe'`
+
+Theme state persists to `localStorage` automatically.
+
+**ThemeToggle** — drop-in button that cycles through all three themes:
+
+```tsx
+import { ThemeToggle } from '@ds-foundation/react'
+
+<ThemeToggle />  // no props required
+```
+
+**useTheme** — build a custom toggle:
+
+```tsx
+import { useTheme } from '@ds-foundation/react'
+
+function MyToggle() {
+  const { theme, setTheme } = useTheme()
+  return <button onClick={() => setTheme('dark')}>{theme}</button>
+}
+```
+
+**Wireframe mode** — brand-neutral palette for prototyping and customer testing. Applied the same way as dark mode:
+
+```tsx
+<DesignSystemProvider defaultTheme="wireframe">
+  {/* all components render in neutral gray/blue — no Ripple branding */}
+</DesignSystemProvider>
+```
+
+The `sketch:` Tailwind variant applies wireframe-specific one-off overrides:
+
+```tsx
+<div className="bg-ds-surface sketch:border-dashed sketch:border-2">
+```
+
+## Tokens
+
+All visual properties come from `--ds-*` semantic tokens. Never hardcode hex values or pixel values that map to a token.
+
+```css
+/* Correct */
+color: var(--ds-text);
+background: var(--ds-surface);
+border-color: var(--ds-border);
+
+/* Never do this */
+color: #1a1a1a;
+```
+
+Key token groups:
+
+| Group | Examples |
 |---|---|
-| Color / surface | Background fills for containers, cards, and pages |
-| Color / text | Text on light or dark surfaces |
-| Color / border | Dividers, field outlines, card edges |
-| Color / interactive | Primary actions, links, focus rings |
-| Color / status | Success, warning, error, and info states |
-| Spacing | Layout gaps and padding — 4px base grid |
-| Typography | Font choice, size scale, weight, line height |
-| Radius | Corner rounding |
-| Shadow | Elevation levels for overlays and cards |
-| Motion | Animation duration and easing curves |
+| Surfaces | `--ds-bg`, `--ds-surface`, `--ds-surface-up`, `--ds-sunken` |
+| Text | `--ds-text`, `--ds-text-muted`, `--ds-text-disabled` |
+| Borders | `--ds-border`, `--ds-border-strong`, `--ds-border-focus` |
+| Brand | `--ds-primary`, `--ds-primary-hover`, `--ds-primary-fg`, `--ds-primary-subtle` |
+| Feedback | `--ds-feedback-success`, `--ds-feedback-warning`, `--ds-feedback-error`, `--ds-feedback-info` |
 
-Dark mode tokens live in a separate file and are scoped to `[data-theme="dark"]`. See the engineer setup below.
+Dark mode and wireframe mode override these tokens — component code never needs to know which theme is active.
 
-### Spec a new component
+**Tailwind:** tokens are available as `ds.*` utility classes:
 
-The registry is spec-first: if a component isn't specced, it doesn't get built. Designers own this step.
+```tsx
+<div className="bg-ds-surface text-ds-text border border-ds-border rounded-md" />
+```
 
-1. Copy `packages/registry/components/_template.mdx`
-2. Rename it to `my-component.mdx`
-3. Fill in the required fields (see below)
-4. Run `node scripts/validate-registry.mjs` — fix any errors
-5. Open a PR — engineers pick up the implementation from there
+The full token reference — primitive scales, semantic aliases, and dark/wireframe overrides — is in [`packages/tokens/`](./packages/tokens/).
 
-**Required fields:**
+## Development
 
-| Field | What goes here |
-|---|---|
-| `id` | Kebab-case, matches the component's code name (e.g. `icon-button`) |
-| `variants` | Every visual variant — if it's not here, it won't be in code |
-| `accessibility.role` | The ARIA role of the root element |
-| `accessibility.wcag` | Which WCAG criteria apply (minimum: `1.4.3 Contrast`) |
-| `accessibility.aria` | Required attributes that consumers must pass |
-| `ai-prompt` | One paragraph describing the component for AI code generation |
-
----
-
-## For engineers
-
-### Prerequisites
-
-Node.js 20+, npm 10+
-
-### Run locally
+**Prerequisites:** Node.js 20+, npm 10+
 
 ```bash
 git clone git@github.com:ds-foundation/ds-foundation-rt.git
@@ -100,261 +135,63 @@ npm install
 npm run dev
 ```
 
-Storybook at `http://localhost:6006`. Docs at `http://localhost:3000`.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start all dev servers |
+| `npm run build` | Build all packages |
+| `npm run typecheck` | TypeScript check across monorepo |
+| `npm run build:tokens` | Build tokens package only |
+| `npm run dev:storybook` | Storybook on localhost:6006 |
+| `npm run dev:docs` | Docs on localhost:3000 |
 
-### Install packages in your project
+## Adding a component
 
-**1. Authenticate with GitHub Packages (once per machine):**
+1. Create the file in the correct layer: `packages/react/src/components/atoms/MyComponent.tsx`
+2. Add a Storybook story: `packages/react/src/components/atoms/MyComponent.stories.tsx`
+3. Export from the barrel: `packages/react/src/index.ts`
+4. Run `npm run typecheck` — zero errors required
+5. Add a changeset: `npx changeset`
+6. Open a PR
+
+**Layer guide:**
+- **atom** — single HTML element or Radix primitive, no DS component composition
+- **molecule** — composes atoms, moderately complex
+- **organism** — complex, feature-rich, may compose molecules and atoms
+- **treasury** — Ripple-specific, domain-semantic components
+
+## Publishing
 
 ```bash
-npm login --registry https://npm.pkg.github.com --scope @ds-foundation
-# Username: your GitHub username
-# Password: GitHub PAT with read:packages scope
+npx changeset        # record what changed and at what semver bump
+npx changeset version  # bump versions + write CHANGELOGs
+git add . && git commit -m "chore: version packages"
+npm run build
+# push + create release PR
 ```
 
-**2. Add to your project's `.npmrc`:**
+Packages publish to GitHub Packages under `@ds-foundation`.
+
+**`.npmrc` for consumers:**
 
 ```
 @ds-foundation:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
-**3. Install what you need:**
+## Known constraints
 
-```bash
-# Tokens only (framework-agnostic)
-npm install @ds-foundation/tokens
-
-# Tokens + React components
-npm install @ds-foundation/tokens @ds-foundation/react
-```
-
-> **If you're building design system tooling** (e.g. a custom MCP integration, token validation scripts, or a registry consumer), also install: `@ds-foundation/core @ds-foundation/registry`
-
-**4. Install the required peer dependencies:**
-
-`@ds-foundation/react` uses Radix UI primitives as peer dependencies so you control the versions in your app. Install them all at once:
-
-```bash
-npm install \
-  @hookform/resolvers \
-  @radix-ui/react-accordion \
-  @radix-ui/react-aspect-ratio \
-  @radix-ui/react-avatar \
-  @radix-ui/react-checkbox \
-  @radix-ui/react-collapsible \
-  @radix-ui/react-context-menu \
-  @radix-ui/react-dialog \
-  @radix-ui/react-dropdown-menu \
-  @radix-ui/react-hover-card \
-  @radix-ui/react-label \
-  @radix-ui/react-navigation-menu \
-  @radix-ui/react-popover \
-  @radix-ui/react-progress \
-  @radix-ui/react-radio-group \
-  @radix-ui/react-scroll-area \
-  @radix-ui/react-select \
-  @radix-ui/react-separator \
-  @radix-ui/react-slider \
-  @radix-ui/react-slot \
-  @radix-ui/react-switch \
-  @radix-ui/react-tabs \
-  @radix-ui/react-toggle \
-  @radix-ui/react-toggle-group \
-  @radix-ui/react-tooltip \
-  date-fns \
-  lucide-react \
-  react-hook-form \
-  zod
-```
-
-Some components have **optional** peers — only install these if you use the corresponding component:
-
-| Package | Used by |
-|---|---|
-| `framer-motion` | Animated transitions |
-| `embla-carousel-react` | `Carousel` |
-| `react-day-picker` | `Calendar`, `DatePicker` |
-| `sonner` | `Sonner` (toast notifications) |
-| `vaul` | `Drawer` |
-| `cmdk` | `Command` |
-| `input-otp` | `InputOTP` |
-| `react-resizable-panels` | `Resizable` |
-
-### Use tokens
-
-**CSS custom properties:**
-
-```css
-.my-component {
-  color: var(--ds-color-text-primary);
-  background: var(--ds-color-surface-default);
-  border-color: var(--ds-color-border-default);
-  padding: var(--ds-spacing-4);          /* 16px */
-  border-radius: var(--ds-radius-md);
-  font-size: var(--ds-typography-font-size-base);
-}
-```
-
-**Dark mode** — import the dark token file and scope it to your theme attribute:
-
-```css
-@import "@ds-foundation/tokens/css";           /* --ds-* custom properties (light) */
-@import "@ds-foundation/tokens/css/dark";      /* [data-theme="dark"] overrides */
-```
-
-Add `data-theme="dark"` to `<html>` to activate the dark theme. Tokens swap automatically.
-
-**Tailwind v4:**
-
-```css
-/* globals.css */
-@import "tailwindcss";
-@import "@ds-foundation/tokens/tailwind";      /* @theme block — tokens as Tailwind utilities */
-@import "@ds-foundation/tokens/css";           /* --ds-* custom properties */
-@import "@ds-foundation/tokens/css/dark";      /* dark mode overrides */
-```
-
-### Use React components
-
-Import from `@ds-foundation/react`. Components use the Radix UI composition pattern — there's no `options` prop shorthand; you compose the pieces directly. This gives you full control over rendering, ARIA attributes, and keyboard behavior.
-
-```tsx
-import {
-  Button,
-  Card, CardContent,
-  Input,
-  Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
-} from "@ds-foundation/react";
-import "@ds-foundation/react/styles.css";
-
-function Example() {
-  return (
-    <Card>
-      <CardContent className="space-y-4">
-        <Input placeholder="Account name" />
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="Select account" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="checking">Checking</SelectItem>
-            <SelectItem value="savings">Savings</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button variant="default">Submit</Button>
-      </CardContent>
-    </Card>
-  );
-}
-```
-
-All variants and props are documented in Storybook. The registry spec for each component lists the full prop surface and ARIA expectations.
-
-### Start a new project from the template
-
-The `template/` directory is a Next.js 15 starter pre-wired to tokens, React components, and the MCP server. Use `degit` to pull it without cloning the full monorepo:
-
-```bash
-npx degit ds-foundation/ds-foundation-rt/template my-new-project
-cd my-new-project
-cp .env.example .env    # add GITHUB_TOKEN
-npm install
-npm run dev
-```
-
-### MCP server (Claude Code)
-
-The MCP server exposes the full registry to Claude Code. Claude can look up component specs, resolve token values, and validate component usage in real time — without guessing APIs.
-
-**In your own project** — install the package and run the binary:
-
-```bash
-npm install @ds-foundation/mcp-server
-npx ds-mcp-server
-# Runs at http://localhost:3100
-```
-
-**In this monorepo** (contributors only):
-
-```bash
-npm run dev -- --filter="@ds-foundation/mcp-server"
-# Runs at http://localhost:3100
-```
-
-**Wire it to Claude Code** (`.claude/settings.json` in your project):
-
-```json
-{
-  "mcpServers": {
-    "ds-foundation": {
-      "url": "http://localhost:3100"
-    }
-  }
-}
-```
-
-**Available tools:**
-
-| Tool | What it does |
-|---|---|
-| `get_component` | Full spec: variants, ARIA requirements, token usage |
-| `list_components` | All registered components |
-| `resolve_token` | Token name → current value in the active theme |
-| `validate_component` | Check a component usage against the spec |
-
----
-
-## Adding a component (end-to-end)
-
-1. **Spec** — create `packages/registry/components/my-component.mdx` (designer step)
-2. **Implement** — add `packages/react/src/MyComponent.tsx`, use semantic tokens only
-3. **Story** — add `packages/react/src/MyComponent.stories.tsx` alongside the component
-4. **Validate:**
-   ```bash
-   npm run validate:registry && npm run validate:tokens && npm run typecheck
-   ```
-5. **Changeset:** `npx changeset` (patch / minor / major)
-6. **PR** — CI runs all validators; Chromatic publishes a visual diff for review
-
----
-
-## Commands
-
-```bash
-# Development
-npm run dev                   # Start all dev servers
-npm run dev:storybook         # Storybook only (port 6006)
-npm run dev:docs              # Docs only (port 3000)
-
-# Building
-npm run build                 # Build all packages
-npm run build:tokens          # Tokens only
-npm run build:storybook       # Storybook static export
-
-# Validation
-npm run typecheck             # TypeScript across the monorepo
-npm run validate:tokens       # DTCG 2025.10 compliance
-npm run validate:registry     # Registry schema compliance
-npm run ci:validate           # Both validators (runs in CI)
-
-# Releasing
-npx changeset                 # Stage a changeset before merging
-npm run release               # Publish to GitHub Packages (CI only)
-npm run clean                 # Remove all build artifacts
-```
-
----
+- **Single barrel export** — `import { Button } from '@ds-foundation/react'` pulls the full bundle. Tree-shaking is not currently supported. For an internal package this is acceptable; revisit if consumers need sub-entry-points.
+- **Form-related deps bundled** — `react-hook-form`, `zod`, and `date-fns` are included in the bundle. If your app already uses different form or date libraries, you're shipping both.
+- **No component tests yet** — render and interaction tests are the next priority before a v1 release.
+- **Wireframe palette is hardcoded CSS** — `semantic.wireframe.css` uses hex values rather than token primitives. Intentional for now; updating the wireframe palette means editing the CSS directly.
 
 ## Tech stack
 
-| Layer | Tools |
-|---|---|
-| Monorepo | Turborepo + npm workspaces |
-| Tokens | Style Dictionary v4, DTCG 2025.10 |
-| Components | Radix UI (headless) + Tailwind v4 + React 18+ |
-| Docs | Next.js 15 + Nextra |
-| Visual review | Storybook 8 + Chromatic |
-| Registry | Velite MDX pipeline |
-| Versioning | Changesets → GitHub Packages |
-| TypeScript | 5.7 strict |
+- **Monorepo:** Turborepo + npm workspaces
+- **Tokens:** Style Dictionary v4, DTCG 2025.10 format
+- **Components:** React 18 + Radix UI (headless) + Tailwind CSS v3
+- **Build:** tsup (ESM + CJS + types)
+- **Docs:** Next.js 15 + Nextra
+- **Visual review:** Storybook 8 + Chromatic
+- **Versioning:** Changesets → GitHub Packages
+- **TypeScript:** 5.7 strict

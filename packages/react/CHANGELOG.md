@@ -1,4 +1,26 @@
-# @ds-foundation/react
+# @ds-foundation/react — Changelog
+
+## 0.3.0 — 2026-04-09
+
+### Added
+- Wireframe theme, DesignSystemProvider, useTheme, ThemeToggle
+- `sketch:` Tailwind variant
+- Atomic design structure: atoms/molecules/organisms + treasury
+
+### Changed
+- All Radix UI + peer deps bundled (consumer install: `npm install @ds-foundation/react`)
+
+## 0.2.0 — 2026-04-09
+
+### Added
+- Badge, Button, Input, Textarea, Card API upgrades
+
+## 0.1.0 — 2026-04-09
+
+### Added
+- Initial release — 59 components with ds.* token-based styling
+
+---
 
 ## 1.0.0
 

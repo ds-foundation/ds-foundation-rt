@@ -1,0 +1,60 @@
+---
+id: kpi-card
+type: component
+version: 1.0.0
+status: stable
+variants: []
+sizes: []
+adapters:
+  tailwind:
+    default:
+      base: "border border-border rounded-xl shadow-sm bg-card p-6 flex flex-col gap-3"
+accessibility:
+  role: "region"
+  wcag:
+    - "1.4.3 Contrast (Minimum)"
+    - "1.4.4 Resize Text"
+  aria:
+    - "Icon is decorative; no alt text needed"
+    - "Trend badge text is readable by screen readers via its text content"
+  notes: "KpiCard is a display-only component. It is not interactive. The trend badge uses a visible icon plus a text label so the trend direction is conveyed to all users."
+ai-prompt: "KpiCard is a metric display card for dashboards. Use it to show a single KPI with an optional trend indicator. Key props: label (string, the metric name), value (string or number, the metric value), trend (object with direction 'up'/'down'/'neutral' and label string), icon (ReactNode, decorative). The card renders a bordered surface with label at top, large value, and a colored pill badge for trend. Import as KpiCard from @ds-foundation/react."
+---
+
+# KpiCard
+
+Metric display card for dashboard KPIs with optional trend indicator.
+
+## Usage
+
+```tsx
+import { KpiCard } from '@ds-foundation/react';
+import { DollarSignIcon } from 'lucide-react';
+
+// Minimal
+<KpiCard label="Total Revenue" value="$1,240,000" />
+
+// With trend and icon
+<KpiCard
+  label="Active Users"
+  value={4821}
+  trend={{ direction: "up", label: "+12% this week" }}
+  icon={<DollarSignIcon className="h-5 w-5" />}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | **Required.** Metric name shown above the value |
+| `value` | `string \| number` | — | **Required.** Metric value; numbers are formatted with `toLocaleString()` |
+| `trend` | `{ direction: 'up' \| 'down' \| 'neutral'; label: string }` | — | Optional trend badge |
+| `icon` | `React.ReactNode` | — | Decorative icon shown top-right |
+| `className` | `string` | — | Additional classes on the root container |
+
+## Accessibility
+
+- The component is presentational — no interactive ARIA roles.
+- The icon is decorative and carries no ARIA label.
+- Trend direction is conveyed via both icon and visible text label.

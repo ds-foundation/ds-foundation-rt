@@ -1,124 +1,125 @@
-export * from './MonoAmount';
-export * from './CurrencyBadge';
-export * from './StatusPill';
-export * from './StatusRing';
-export * from './FreshnessChip';
-export * from './UrgencyBadge';
-export * from './BankingWindowDot';
-export * from './DetailCard';
-export * from './IconButton';
-export * from './StateBadge';
-
-// Batch A — simple display components
-export { Alert, AlertTitle, AlertDescription } from './Alert';
-export { AspectRatio } from './AspectRatio';
-export { Avatar, AvatarImage, AvatarFallback } from './Avatar';
-export { Badge, type BadgeProps } from './Badge';
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
-export { Label } from './Label';
-export { Progress } from './Progress';
-export { Separator } from './Separator';
-export { Skeleton } from './Skeleton';
-export { Spinner } from './Spinner';
-export { Display, H1, H2, H3, H4, H5, BodyLarge, Body, BodySmall, Caption } from './Typography';
-
-// Batch B — form inputs
-export { Button, type ButtonProps } from './Button';
+// ── Atoms ──────────────────────────────────────
+export { Alert, AlertTitle, AlertDescription } from './components/atoms/Alert';
+export { AspectRatio } from './components/atoms/AspectRatio';
+export { Avatar, AvatarImage, AvatarFallback } from './components/atoms/Avatar';
+export { Badge, type BadgeProps } from './components/atoms/Badge';
+export { Button, type ButtonProps } from './components/atoms/Button';
 // (buttonVariants is an internal CVA helper — not exported)
-export { Checkbox } from './Checkbox';
+export { Checkbox } from './components/atoms/Checkbox';
+export { Collapsible, CollapsibleContent, CollapsibleTrigger } from './components/atoms/Collapsible';
+export { Input, type InputProps } from './components/atoms/Input';
+export { Label } from './components/atoms/Label';
+export { Progress } from './components/atoms/Progress';
+export { RadioGroup, RadioGroupItem } from './components/atoms/RadioGroup';
+export { Separator } from './components/atoms/Separator';
+export { Skeleton } from './components/atoms/Skeleton';
+export { Slider } from './components/atoms/Slider';
+export { Spinner } from './components/atoms/Spinner';
+export { Switch } from './components/atoms/Switch';
+export { Textarea } from './components/atoms/Textarea';
+export { Toggle } from './components/atoms/Toggle';
+// (toggleVariants is an internal CVA helper — not exported)
+export { Display, H1, H2, H3, H4, H5, BodyLarge, Body, BodySmall, Caption } from './components/atoms/Typography';
+export { DesignSystemProvider, useTheme } from './components/atoms/DesignSystemProvider';
+export type { Theme, DesignSystemProviderProps } from './components/atoms/DesignSystemProvider';
+export { ThemeToggle } from './components/atoms/ThemeToggle';
+
+// ── Molecules ──────────────────────────────────
+export {
+  Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink,
+  BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
+} from './components/molecules/Breadcrumb';
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardDivider } from './components/molecules/Card';
+export type { CardProps, CardHeaderProps, CardFooterProps, CardDividerProps } from './components/molecules/Card';
+export { DatePicker, type DatePickerProps } from './components/molecules/DatePicker';
 export {
   Form, FormControl, FormDescription, FormField,
   FormItem, FormLabel, FormMessage, useFormField,
-} from './Form';
-export { Input, type InputProps } from './Input';
-export { InputNumber } from './InputNumber';
-export { RadioGroup, RadioGroupItem } from './RadioGroup';
+} from './components/molecules/Form';
+export { HoverCard, HoverCardContent, HoverCardTrigger } from './components/molecules/HoverCard';
+export { InputNumber } from './components/molecules/InputNumber';
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './components/molecules/InputOTP';
+export {
+  Pagination, PaginationContent, PaginationEllipsis, PaginationItem,
+  PaginationLink, PaginationNext, PaginationPrevious,
+} from './components/molecules/Pagination';
+export { Popover, PopoverContent, PopoverTrigger } from './components/molecules/Popover';
+export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './components/molecules/Resizable';
+export { ScrollArea, ScrollBar } from './components/molecules/ScrollArea';
+export { Segmented, type SegmentedProps } from './components/molecules/Segmented';
 export {
   Select, SelectContent, SelectGroup, SelectItem, SelectLabel,
   SelectSeparator, SelectScrollUpButton, SelectScrollDownButton,
   SelectTrigger, SelectValue,
-} from './Select';
-export { Slider } from './Slider';
-export { Switch } from './Switch';
-export { Textarea } from './Textarea';
-export { Toggle } from './Toggle';
-// (toggleVariants is an internal CVA helper — not exported)
-export { ToggleGroup, ToggleGroupItem } from './ToggleGroup';
+} from './components/molecules/Select';
+export { Stepper, type StepperProps } from './components/molecules/Stepper';
+export { Tabs, TabsContent, TabsList, TabsTrigger } from './components/molecules/Tabs';
+export { ToggleGroup, ToggleGroupItem } from './components/molecules/ToggleGroup';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './components/molecules/Tooltip';
 
-// Batch C — overlay and popup
-export { Collapsible, CollapsibleContent, CollapsibleTrigger } from './Collapsible';
+// ── Organisms ──────────────────────────────────
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './components/organisms/Accordion';
+export { Calendar, CalendarDayButton } from './components/organisms/Calendar';
+export {
+  Carousel, CarouselContent, CarouselItem,
+  CarouselNext, CarouselPrevious, type CarouselApi,
+} from './components/organisms/Carousel';
+export {
+  Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput,
+  CommandItem, CommandList, CommandSeparator, CommandShortcut,
+} from './components/organisms/Command';
 export {
   ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup,
   ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup,
   ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub,
   ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger,
-} from './ContextMenu';
+} from './components/organisms/ContextMenu';
 export {
   Dialog, DialogClose, DialogContent, DialogDescription,
   DialogFooter, DialogHeader, DialogOverlay, DialogPortal,
   DialogTitle, DialogTrigger,
-} from './Dialog';
+} from './components/organisms/Dialog';
 export {
   Drawer, DrawerClose, DrawerContent, DrawerDescription,
   DrawerFooter, DrawerHeader, DrawerOverlay, DrawerPortal,
   DrawerTitle, DrawerTrigger,
-} from './Drawer';
+} from './components/organisms/Drawer';
 export {
   DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup,
   DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub,
   DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger,
-} from './DropdownMenu';
-export { HoverCard, HoverCardContent, HoverCardTrigger } from './HoverCard';
+} from './components/organisms/DropdownMenu';
+export { EmptyState, type EmptyStateProps } from './components/organisms/EmptyState';
 export {
   NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem,
   NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport,
   navigationMenuTriggerStyle,
-} from './NavigationMenu';
-export { Popover, PopoverContent, PopoverTrigger } from './Popover';
+} from './components/organisms/NavigationMenu';
 export {
   Sheet, SheetClose, SheetContent, SheetDescription,
   SheetFooter, SheetHeader, SheetOverlay, SheetPortal,
   SheetTitle, SheetTrigger,
-} from './Sheet';
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Tooltip';
-
-// Batch D — navigation and layout
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './Accordion';
-export {
-  Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink,
-  BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
-} from './Breadcrumb';
-export { FormCard, type FormCardProps } from './FormCard';
-// (RlusdIcon is Ripple-specific branding — not exported from this package)
-export { KpiCard, type KpiCardProps } from './KpiCard';
-export {
-  Pagination, PaginationContent, PaginationEllipsis, PaginationItem,
-  PaginationLink, PaginationNext, PaginationPrevious,
-} from './Pagination';
-export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './Resizable';
-export { ScrollArea, ScrollBar } from './ScrollArea';
-export { Segmented, type SegmentedProps } from './Segmented';
-export { Stepper, type StepperProps } from './Stepper';
-export { Tabs, TabsContent, TabsList, TabsTrigger } from './Tabs';
-
-// Batch E — complex and data components
-export { Calendar, CalendarDayButton } from './Calendar';
-export {
-  Carousel, CarouselContent, CarouselItem,
-  CarouselNext, CarouselPrevious, type CarouselApi,
-} from './Carousel';
-export {
-  Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput,
-  CommandItem, CommandList, CommandSeparator, CommandShortcut,
-} from './Command';
-export { DatePicker, type DatePickerProps } from './DatePicker';
-export { EmptyState, type EmptyStateProps } from './EmptyState';
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from './InputOTP';
-export { Toaster } from './Sonner';
+} from './components/organisms/Sheet';
+export { Toaster } from './components/organisms/Sonner';
 export {
   Table, TableBody, TableCaption, TableCell,
   TableFooter, TableHead, TableHeader, TableRow,
-} from './Table';
-export { Tag, type TagProps } from './Tag';
-export { Timeline, type TimelineItem } from './Timeline';
+} from './components/organisms/Table';
+export { Timeline, type TimelineItem } from './components/organisms/Timeline';
+
+// ── Treasury ───────────────────────────────────
+export * from './treasury/MonoAmount';
+export * from './treasury/CurrencyBadge';
+export * from './treasury/StatusPill';
+export * from './treasury/StatusRing';
+export * from './treasury/FreshnessChip';
+export * from './treasury/UrgencyBadge';
+export * from './treasury/BankingWindowDot';
+export * from './treasury/DetailCard';
+export * from './treasury/IconButton';
+export * from './treasury/StateBadge';
+export { FormCard, type FormCardProps } from './treasury/FormCard';
+// (RlusdIcon is Ripple-specific branding — not exported from this package)
+export { KpiCard, type KpiCardProps } from './treasury/KpiCard';
+export { Tag, type TagProps } from './treasury/Tag';
