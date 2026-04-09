@@ -62,7 +62,7 @@ function Segmented({ options, value, defaultValue, onChange, className }: Segmen
             disabled={opt.disabled} tabIndex={isActive ? 0 : -1}
             onClick={() => !opt.disabled && select(opt.value)}
             className={cn(
-              "px-4 py-1.5 rounded-md text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+              "px-4 py-1.5 rounded-md text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ds-border-focus",
               isActive ? "bg-ds-bg shadow-sm text-ds-text" : "text-ds-text-muted hover:text-ds-text disabled:opacity-40 disabled:cursor-not-allowed"
             )}
           >
