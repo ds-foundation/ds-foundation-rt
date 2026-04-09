@@ -2,61 +2,130 @@
 
 ## Before you start
 
-Check the registry first — your component may already exist.
-
-```bash
-node scripts/validate-registry.mjs   # check for issues in existing specs
-```
+Check whether a component already exists in `packages/react/src/components/` or `packages/react/src/treasury/` before building something new.
 
 ---
 
 ## Adding a component
 
-### 1. Write the spec (designers start here)
+### 1. Place it in the right layer
 
-Copy `packages/registry/components/_template.mdx` and fill in the fields.
+| Layer | Path | When to use |
+|---|---|---|
+| `atoms/` | `packages/react/src/components/atoms/` | Single HTML element or Radix primitive, no DS composition |
+| `molecules/` | `packages/react/src/components/molecules/` | Composes atoms, moderately complex |
+| `organisms/` | `packages/react/src/components/organisms/` | Complex, feature-rich, may compose molecules |
+| `treasury/` | `packages/react/src/treasury/` | Ripple-specific domain components |
 
-Key fields:
-- `id` — kebab-case, matches the component name in code (e.g. `icon-button`)
-- `variants` — list every variant. If it's not in the spec, it won't be in code
-- `accessibility.role` — the ARIA role of the root element
+### 2. Implement the component
+
+Use `React.forwardRef` and extend the appropriate HTML interface:
+
+```tsx
+import * as React from 'react'
+import { cn } from '../utils'
+
+export interface MyComponentProps extends React.HTMLAttributes<HTMLDivElement> {
+  label: string
+}
+
+const MyComponent = React.forwardRef<HTMLDivElement, MyComponentProps>(
+  ({ label, className, ...props }, ref) => (
+    <div ref={ref} className={cn('bg-ds-surface text-ds-text', className)} {...props}>
+      {label}
+    </div>
+  )
+)
+MyComponent.displayName = 'MyComponent'
+
+export { MyComponent }
+```
+
+Never hardcode visual values — use `--ds-*` semantic tokens or `ds.*` Tailwind classes. See [Token naming rules](#token-naming-rules) below.
+
+### 3. Add a Storybook story
+
+Create `packages/react/src/components/{layer}/MyComponent.stories.tsx` (or `packages/react/src/treasury/MyComponent.stories.tsx` for treasury) showing all variants and states.
+
+### 4. Export from the barrel
+
+Add the export to `packages/react/src/index.ts` in the correct layer section.
+
+### 5. Write a registry spec (optional but encouraged)
+
+Copy `packages/registry/components/_template.mdx` into `packages/registry/components/my-component.mdx` and fill in the fields. Key fields:
+- `id` — kebab-case, matches the component name (e.g. `icon-button`)
+- `variants` — list every variant. If it's not in the spec, reviewers will ask why
+- `accessibility.role` — ARIA role of the root element
 - `accessibility.wcag` — which WCAG criteria apply (minimum: `1.4.3 Contrast`)
-- `accessibility.aria` — required attributes consumers must pass
 - `ai-prompt` — one paragraph describing the component for AI code generation
 
-### 2. Add the Storybook story
-
-Create `apps/storybook/src/stories/MyComponent.stories.tsx` showing all variants and states.
-
-### 3. Validate
+### 6. Validate
 
 ```bash
-node scripts/validate-registry.mjs     # 0 errors required
+node scripts/validate-registry.mjs     # 0 errors required (if spec added)
 npm run validate:tokens                 # 0 errors required
 npm run typecheck                       # 0 errors required
 ```
 
-### 4. Add a changeset
+### 7. Add a changeset
 
 ```bash
 npx changeset
-# Choose: patch for fixes, minor for new components, major for breaking changes
+# patch — bug fix or internal change
+# minor — new component or new prop
+# major — breaking change to existing API
 ```
 
-### 5. Open a PR
+### 8. Open a PR
 
-Use the PR template. CI will run all validators automatically.
+CI runs all validators automatically. The PR description should include what layer the component lives in and a link to the Storybook story.
 
 ---
 
 ## Token naming rules
 
-- Always use semantic tokens: `var(--ds-color-*)`, `var(--ds-spacing-*)`, etc.
-- Never hardcode hex values or pixel values that correspond to a token
-- See [Token Reference](/tokens) for the full list
+Always use semantic tokens. Never hardcode hex values or pixel values that correspond to a token.
+
+```css
+/* Correct */
+color: var(--ds-text);
+background: var(--ds-surface);
+border-color: var(--ds-border);
+color: var(--ds-feedback-success);
+
+/* Never do this */
+color: #1a1a1a;
+background: #ffffff;
+border-color: rgba(0,0,0,0.12);
+```
+
+Tailwind equivalents are available as `ds.*` classes:
+
+```tsx
+<div className="bg-ds-surface text-ds-text border border-ds-border" />
+```
+
+Key token groups:
+
+| Group | Examples |
+|---|---|
+| Surfaces | `--ds-bg`, `--ds-surface`, `--ds-surface-up`, `--ds-sunken` |
+| Text | `--ds-text`, `--ds-text-muted`, `--ds-text-disabled`, `--ds-text-inverse` |
+| Borders | `--ds-border`, `--ds-border-strong`, `--ds-border-focus` |
+| Brand | `--ds-primary`, `--ds-primary-hover`, `--ds-primary-fg`, `--ds-primary-subtle` |
+| Feedback | `--ds-feedback-success`, `--ds-feedback-warning`, `--ds-feedback-error`, `--ds-feedback-info` |
+
+The full token reference is in [`packages/tokens/`](./packages/tokens/).
 
 ---
 
 ## Design principles
 
-See [Design Principles](/principles) for the five rules that guide every decision.
+Five rules that govern every decision in this system:
+
+1. **Restraint by default** — components are neutral at rest; colour communicates intent, not decoration
+2. **Token-first, always** — every visual property comes from a `--ds-*` token, no exceptions
+3. **Accessible without configuration** — ARIA, contrast, and keyboard support are built in
+4. **Composable, not monolithic** — components do one thing; complex UI is built by combining them
+5. **Three themes, one codebase** — light, dark, and wireframe are equal first-class themes; component code never checks which theme is active

@@ -178,6 +178,33 @@ Packages publish to GitHub Packages under `@ds-foundation`.
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
+## Design Principles
+
+Five rules that govern every component decision in this system — read them before contributing:
+
+1. **Restraint by default** — components are neutral at rest; colour communicates intent, not decoration
+2. **Token-first, always** — every visual property comes from a `--ds-*` token; hardcoded values are bugs
+3. **Accessible without configuration** — ARIA, contrast, and keyboard support are built in; consumers inherit them
+4. **Composable, not monolithic** — components do one thing; complex UI is built by combining them
+5. **Three themes, one codebase** — light, dark, and wireframe are equal first-class themes; component code never checks which theme is active
+
+Full rationale with examples: [DESIGN_PRINCIPLES.md](./DESIGN_PRINCIPLES.md)
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide.
+
+Quick path for adding a component:
+
+1. Pick the right layer: `atoms/` `molecules/` `organisms/` `treasury/`
+2. Create `packages/react/src/components/{layer}/MyComponent.tsx` using `React.forwardRef`
+3. Add `packages/react/src/components/{layer}/MyComponent.stories.tsx`
+4. Export from `packages/react/src/index.ts`
+5. Run `npm run typecheck` — zero errors required
+6. `npx changeset` → open a PR
+
+Never hardcode hex values — every visual property must come from a `--ds-*` token.
+
 ## Known constraints
 
 - **Single barrel export** — `import { Button } from '@ds-foundation/react'` pulls the full bundle. Tree-shaking is not currently supported. For an internal package this is acceptable; revisit if consumers need sub-entry-points.
