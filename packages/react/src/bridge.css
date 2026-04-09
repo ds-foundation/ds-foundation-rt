@@ -27,6 +27,7 @@
   --border:                 var(--ds-color-border-default);
   --input:                  var(--ds-color-border-default);
   --ring:                   var(--ds-color-border-focus);
+  --ring-offset-background: var(--ds-color-surface-page);
 
   /* ── Layout ───────────────────────────────────────── */
   --sidebar-bg:             var(--ds-color-layout-sidebar-bg);

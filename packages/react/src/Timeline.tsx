@@ -43,10 +43,10 @@ function Timeline({ items, className }: TimelineProps) {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-baseline justify-between gap-2">
-                <Body className="font-medium text-gray-900">{item.title}</Body>
-                {item.timestamp && <Caption className="text-gray-400 shrink-0">{item.timestamp}</Caption>}
+                <Body className="font-medium text-foreground">{item.title}</Body>
+                {item.timestamp && <Caption className="text-muted-foreground shrink-0">{item.timestamp}</Caption>}
               </div>
-              {item.description && <Caption className="text-gray-500 mt-0.5">{item.description}</Caption>}
+              {item.description && <Caption className="text-muted-foreground mt-0.5">{item.description}</Caption>}
             </div>
           </li>
         )

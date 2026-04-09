@@ -25,9 +25,9 @@ function Stepper({ steps, className }: StepperProps) {
           "w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold border-2 shrink-0 transition-colors",
           {
             "bg-blue-500 border-blue-500 text-white": step.status === "complete",
-            "border-blue-500 text-blue-500 bg-white": step.status === "active",
-            "border-orange-400 text-orange-400 bg-white": step.status === "error",
-            "border-gray-200 text-gray-400 bg-white": step.status === "pending",
+            "border-blue-500 text-blue-500 bg-background": step.status === "active",
+            "border-orange-400 text-orange-400 bg-background": step.status === "error",
+            "border-border text-muted-foreground bg-background": step.status === "pending",
           }
         )
         return (
@@ -43,13 +43,13 @@ function Stepper({ steps, className }: StepperProps) {
             </div>
             <Caption className={cn("mt-2 text-center px-1", {
               "text-blue-500 font-medium": step.status === "active",
-              "text-gray-900": step.status === "complete",
+              "text-foreground": step.status === "complete",
               "text-orange-400": step.status === "error",
-              "text-gray-400": step.status === "pending",
+              "text-muted-foreground": step.status === "pending",
             })}>
               {step.label}
             </Caption>
-            {step.description && <Caption className="text-gray-400 text-center px-1 mt-0.5">{step.description}</Caption>}
+            {step.description && <Caption className="text-muted-foreground text-center px-1 mt-0.5">{step.description}</Caption>}
           </li>
         )
       })}
