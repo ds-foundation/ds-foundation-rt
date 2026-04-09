@@ -1,9 +1,12 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+// createRequire is needed for CJS interop (tailwindcss v3, autoprefixer)
+const require = createRequire(import.meta.url);
 
 const root = path.resolve(__dirname, '..', '..', '..');
 
@@ -24,6 +27,25 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-vite',
     options: {},
+  },
+  viteFinal: async (config) => {
+    const { mergeConfig } = await import('vite');
+    // Root node_modules has tailwindcss v4; packages/react uses v3. Require v3 explicitly.
+    const tailwindcss = require(path.join(root, 'packages/react/node_modules/tailwindcss'));
+    const autoprefixer = require('autoprefixer');
+
+    return mergeConfig(config, {
+      css: {
+        postcss: {
+          plugins: [
+            // Reference the config file so theme extensions stay in one place.
+            // Tailwind v3 bundles jiti to parse TypeScript configs.
+            tailwindcss(path.join(root, 'packages/react/tailwind.config.ts')),
+            autoprefixer(),
+          ],
+        },
+      },
+    });
   },
 };
 
