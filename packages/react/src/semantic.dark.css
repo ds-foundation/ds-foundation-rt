@@ -27,7 +27,7 @@
   --ds-primary-fg:      var(--ds-color-brand-primary-on);
   --ds-primary-subtle:  var(--ds-color-brand-primary-subtle);
 
-  /* ── Feedback icons ─────────────────────────────────── */
+  /* ── Feedback icons (single-value shortcuts) ────────── */
   --ds-success:         var(--ds-color-feedback-success-icon);
   --ds-warning:         var(--ds-color-feedback-warning-icon);
   --ds-danger:          var(--ds-color-feedback-error-icon);
@@ -53,4 +53,7 @@
   --ds-feedback-info-text:      var(--ds-color-feedback-info-text);
   --ds-feedback-info-border:    var(--ds-color-feedback-info-border);
   --ds-feedback-info-icon:      var(--ds-color-feedback-info-icon);
+
+  /* ── Easing ─────────────────────────────────────────── */
+  /* Easing values are theme-agnostic; defined once in semantic.css (:root). */
 }
