@@ -127,10 +127,59 @@ npm install @ds-foundation/tokens
 
 # Tokens + React components
 npm install @ds-foundation/tokens @ds-foundation/react
-
-# Full surface (tokens + components + registry + core types)
-npm install @ds-foundation/tokens @ds-foundation/react @ds-foundation/core @ds-foundation/registry
 ```
+
+> **If you're building design system tooling** (e.g. a custom MCP integration, token validation scripts, or a registry consumer), also install: `@ds-foundation/core @ds-foundation/registry`
+
+**4. Install the required peer dependencies:**
+
+`@ds-foundation/react` uses Radix UI primitives as peer dependencies so you control the versions in your app. Install them all at once:
+
+```bash
+npm install \
+  @hookform/resolvers \
+  @radix-ui/react-accordion \
+  @radix-ui/react-aspect-ratio \
+  @radix-ui/react-avatar \
+  @radix-ui/react-checkbox \
+  @radix-ui/react-collapsible \
+  @radix-ui/react-context-menu \
+  @radix-ui/react-dialog \
+  @radix-ui/react-dropdown-menu \
+  @radix-ui/react-hover-card \
+  @radix-ui/react-label \
+  @radix-ui/react-navigation-menu \
+  @radix-ui/react-popover \
+  @radix-ui/react-progress \
+  @radix-ui/react-radio-group \
+  @radix-ui/react-scroll-area \
+  @radix-ui/react-select \
+  @radix-ui/react-separator \
+  @radix-ui/react-slider \
+  @radix-ui/react-slot \
+  @radix-ui/react-switch \
+  @radix-ui/react-tabs \
+  @radix-ui/react-toggle \
+  @radix-ui/react-toggle-group \
+  @radix-ui/react-tooltip \
+  date-fns \
+  lucide-react \
+  react-hook-form \
+  zod
+```
+
+Some components have **optional** peers — only install these if you use the corresponding component:
+
+| Package | Used by |
+|---|---|
+| `framer-motion` | Animated transitions |
+| `embla-carousel-react` | `Carousel` |
+| `react-day-picker` | `Calendar`, `DatePicker` |
+| `sonner` | `Sonner` (toast notifications) |
+| `vaul` | `Drawer` |
+| `cmdk` | `Command` |
+| `input-otp` | `InputOTP` |
+| `react-resizable-panels` | `Resizable` |
 
 ### Use tokens
 
@@ -221,7 +270,7 @@ The MCP server exposes the full registry to Claude Code. Claude can look up comp
 **Start the server:**
 
 ```bash
-npm run dev --filter=@ds-foundation/mcp-server
+npm run dev -- --filter="@ds-foundation/mcp-server"
 # Runs at http://localhost:3100
 ```
 
