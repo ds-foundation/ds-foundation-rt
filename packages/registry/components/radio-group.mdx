@@ -19,9 +19,9 @@ accessibility:
     - "role=\"radiogroup\" on the root element"
     - "role=\"radio\" and aria-checked on each RadioGroupItem"
     - "aria-disabled on disabled items"
-    - "Each item should have an associated <label> via htmlFor or aria-label"
+    - "Each item should have an associated label via htmlFor or aria-label"
   notes: "Uses roving tabIndex so only one item is in the tab sequence at a time. Arrow keys move selection within the group."
-ai-prompt: "RadioGroup is a single-select set of radio buttons built on Radix UI, suitable for selecting one option from a small set (typically 2–5 choices). Compose RadioGroup as the container and RadioGroupItem for each option; pair each item with a <label> using htmlFor for accessibility. Pass value and onValueChange for controlled usage, or defaultValue for uncontrolled. The group uses a grid layout with gap-2 by default. Arrow keys navigate between options. The filled circle indicator renders via the Radix Indicator child inside RadioGroupItem."
+ai-prompt: "RadioGroup is a single-select set of radio buttons built on Radix UI, suitable for selecting one option from a small set (typically 2–5 choices). Compose RadioGroup as the container and RadioGroupItem for each option; pair each item with a label using htmlFor for accessibility. Pass value and onValueChange for controlled usage, or defaultValue for uncontrolled. The group uses a grid layout with gap-2 by default. Arrow keys navigate between options. The filled circle indicator renders via the Radix Indicator child inside RadioGroupItem."
 ---
 
 # RadioGroup

@@ -19,7 +19,7 @@ accessibility:
     - "aria-expanded on the trigger reflects the open state"
     - "aria-controls links the trigger to the content panel"
   notes: "Thin wrapper around Radix CollapsiblePrimitive. No custom base styles — all layout comes from consumer className. Use Accordion for styled multi-item collapsible lists."
-ai-prompt: "Collapsible shows or hides a single content section on trigger click. Use it for expandable settings, filter panels, optional detail sections, or any single-item toggle — not for FAQ-style lists (use Accordion instead). Compose: Collapsible (root, holds open state) > CollapsibleTrigger (the button or element that toggles) + CollapsibleContent (the hidden/shown area). Use open and onOpenChange for controlled mode, or defaultOpen for uncontrolled. The trigger does not need to be a <button> element — it wraps whatever child is provided."
+ai-prompt: "Collapsible shows or hides a single content section on trigger click. Use it for expandable settings, filter panels, optional detail sections, or any single-item toggle — not for FAQ-style lists (use Accordion instead). Compose: Collapsible (root, holds open state) > CollapsibleTrigger (the button or element that toggles) + CollapsibleContent (the hidden/shown area). Use open and onOpenChange for controlled mode, or defaultOpen for uncontrolled. The trigger does not need to be a button element — it wraps whatever child is provided."
 ---
 
 # Collapsible

@@ -19,7 +19,7 @@ accessibility:
     - "role=\"progressbar\" on root element"
     - "aria-valuemin, aria-valuemax, aria-valuenow set from value prop"
     - "aria-label or aria-labelledby should be provided by consumer"
-  notes: "The indicator uses translateX to animate fill; value should be 0–100. Provide an accessible label via aria-label or a linked <label> element."
+  notes: "The indicator uses translateX to animate fill; value should be 0–100. Provide an accessible label via aria-label or a linked label element."
 ai-prompt: "Progress is a linear progress bar built on Radix UI's progress primitive. Use it to show the completion state of a task, upload, or multi-step process. Pass a numeric value between 0 and 100 to set the fill amount; the indicator animates smoothly via CSS transform. The track is full-width with a rounded pill shape. Always provide an aria-label or aria-labelledby so screen readers can announce the purpose of the bar. There are no variants or sizes — use className to override height or color."
 ---
 

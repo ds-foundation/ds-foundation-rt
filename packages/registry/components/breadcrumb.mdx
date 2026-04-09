@@ -21,12 +21,12 @@ accessibility:
     - "2.4.8 Location"
     - "4.1.2 Name, Role, Value"
   aria:
-    - "aria-label='breadcrumb' on the root <nav>"
+    - "aria-label='breadcrumb' on the root nav"
     - "aria-current='page' on BreadcrumbPage marks the current location"
     - "aria-disabled='true' on BreadcrumbPage prevents it from being interactive"
     - "BreadcrumbSeparator uses role='presentation' aria-hidden='true'"
     - "BreadcrumbEllipsis uses role='presentation' aria-hidden='true' with sr-only 'More' text"
-  notes: "The root Breadcrumb renders a <nav> with aria-label='breadcrumb'. Separator and ellipsis elements are hidden from assistive technology."
+  notes: "The root Breadcrumb renders a nav with aria-label='breadcrumb'. Separator and ellipsis elements are hidden from assistive technology."
 ai-prompt: "Breadcrumb renders a navigation trail showing the user's location in the site hierarchy. Compose: Breadcrumb (nav) > BreadcrumbList (ol) > BreadcrumbItem (li) containing either BreadcrumbLink (ancestor pages, clickable) or BreadcrumbPage (current page, not clickable). Place BreadcrumbSeparator between each item. Use BreadcrumbEllipsis with a popover when the trail is too long to show all steps. The asChild prop on BreadcrumbLink allows rendering as a router Link component."
 ---
 

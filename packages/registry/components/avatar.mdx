@@ -19,7 +19,7 @@ accessibility:
   aria:
     - "aria-label on Avatar root when used without adjacent visible name"
     - "AvatarFallback text must meet 4.5:1 contrast against bg-muted"
-  notes: "AvatarImage delegates to the native <img> — provide alt text. AvatarFallback renders initials or a placeholder icon when the image fails to load or is still loading."
+  notes: "AvatarImage delegates to the native img — provide alt text. AvatarFallback renders initials or a placeholder icon when the image fails to load or is still loading."
 ai-prompt: "Avatar displays a circular user image with an automatic text or icon fallback when the image is unavailable. Always pair AvatarImage (with a descriptive src and alt) with AvatarFallback (2-letter initials or an icon). The fallback renders while the image loads and permanently if the src fails. Use in headers, comment threads, user lists, and profile sections. Default size is 40x40px (h-10 w-10); override with className."
 ---
 

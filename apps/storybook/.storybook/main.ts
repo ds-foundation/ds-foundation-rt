@@ -2,6 +2,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
+import remarkFrontmatter from 'remark-frontmatter';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +20,19 @@ const config: StorybookConfig = {
     path.join(root, 'packages/*/src/**/*.stories.@(ts|tsx)'),
   ],
   addons: [
-    '@storybook/addon-docs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            // Strip YAML frontmatter before MDX2 parsing so HTML tags
+            // inside frontmatter strings (e.g. ai-prompt: "...the <button>...")
+            // don't trigger "Expected closing tag" errors.
+            remarkPlugins: [remarkFrontmatter],
+          },
+        },
+      },
+    },
     '@storybook/addon-a11y',
     '@storybook/addon-themes',
     '@chromatic-com/storybook',

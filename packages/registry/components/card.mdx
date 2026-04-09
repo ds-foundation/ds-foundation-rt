@@ -21,9 +21,9 @@ accessibility:
     - "1.4.3 Contrast (Minimum)"
   aria:
     - "Add aria-labelledby pointing to CardTitle when the card is a standalone landmark section"
-    - "CardTitle renders as <h3> — ensure heading hierarchy is correct in context"
-  notes: "Card is a layout container with no interactive role. CardTitle renders an <h3> element. Adjust heading level by overriding with className or rendering a different heading inside CardHeader."
-ai-prompt: "Card is the primary content container component. Use it to group related information with a visual boundary: financial summaries, profile blocks, dashboard panels, list items with metadata. Compose with CardHeader (containing CardTitle and CardDescription), CardContent (the main body), and CardFooter (actions or metadata). Card has no interactive semantics by itself — wrap in a button or link only when the whole card is clickable. CardTitle renders as <h3>; ensure it fits the page heading hierarchy."
+    - "CardTitle renders as h3 — ensure heading hierarchy is correct in context"
+  notes: "Card is a layout container with no interactive role. CardTitle renders an h3 element. Adjust heading level by overriding with className or rendering a different heading inside CardHeader."
+ai-prompt: "Card is the primary content container component. Use it to group related information with a visual boundary: financial summaries, profile blocks, dashboard panels, list items with metadata. Compose with CardHeader (containing CardTitle and CardDescription), CardContent (the main body), and CardFooter (actions or metadata). Card has no interactive semantics by itself — wrap in a button or link only when the whole card is clickable. CardTitle renders as h3; ensure it fits the page heading hierarchy."
 ---
 
 # Card

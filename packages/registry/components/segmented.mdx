@@ -20,7 +20,7 @@ accessibility:
     - "role=\"radio\" and aria-checked on each button"
     - "tabIndex roving: active segment is 0, others are -1"
   notes: "Arrow keys (Left/Right), Home, and End navigate between enabled segments. Disabled segments are skipped in keyboard navigation."
-ai-prompt: "Segmented is a segmented control (tab switcher) component for selecting one option from a small, mutually exclusive set — similar to a tab bar or toggle group. Use it for view mode switches (List/Grid), time range selectors, or filter toggles. Pass an options array of {label, value, disabled?} objects, and control selection via value + onChange (controlled) or defaultValue (uncontrolled). The active segment renders with a white pill and shadow on a light gray track. Keyboard navigation uses arrow keys with a roving tabIndex pattern. Disabled options are visually dimmed and skipped by arrow key navigation."
+ai-prompt: "Segmented is a segmented control (tab switcher) component for selecting one option from a small, mutually exclusive set — similar to a tab bar or toggle group. Use it for view mode switches (List/Grid), time range selectors, or filter toggles. Pass an options array of objects with label, value, and optional disabled fields, and control selection via value + onChange (controlled) or defaultValue (uncontrolled). The active segment renders with a white pill and shadow on a light gray track. Keyboard navigation uses arrow keys with a roving tabIndex pattern. Disabled options are visually dimmed and skipped by arrow key navigation."
 ---
 
 # Segmented
