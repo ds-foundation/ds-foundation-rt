@@ -18,11 +18,11 @@ export const Default: StoryObj = {
       <HoverCardContent className="w-64">
         <div className="space-y-1">
           <h4 className="text-sm font-semibold">@ds-foundation</h4>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-ds-text-muted">
             The design system powering Ripple Treasury UI components.
           </p>
           <div className="flex items-center pt-2">
-            <span className="text-xs text-muted-foreground">Joined January 2025</span>
+            <span className="text-xs text-ds-text-muted">Joined January 2025</span>
           </div>
         </div>
       </HoverCardContent>

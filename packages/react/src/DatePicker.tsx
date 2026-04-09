@@ -29,7 +29,7 @@ function DatePicker({ value, defaultValue, onChange, placeholder = "Pick a date"
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" disabled={disabled}
-          className={cn("w-[240px] justify-start text-left font-normal", !activeDate && "text-muted-foreground", className)}
+          className={cn("w-[240px] justify-start text-left font-normal", !activeDate && "text-ds-text-muted", className)}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {activeDate ? format(activeDate, "PPP") : <span>{placeholder}</span>}
@@ -38,8 +38,8 @@ function DatePicker({ value, defaultValue, onChange, placeholder = "Pick a date"
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar mode="single" selected={activeDate} onSelect={handleSelect} />
         {activeDate && (
-          <div className="border-t border-border p-2">
-            <Button variant="ghost" size="sm" className="w-full text-muted-foreground" onClick={() => handleSelect(undefined)}>
+          <div className="border-t border-ds-border p-2">
+            <Button variant="ghost" size="sm" className="w-full text-ds-text-muted" onClick={() => handleSelect(undefined)}>
               Clear
             </Button>
           </div>

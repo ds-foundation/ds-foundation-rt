@@ -16,12 +16,12 @@ export function RlusdIcon({ className }: { className?: string }) {
 /* ─── Radio indicator ─── */
 function RadioIndicator({ checked }: { checked: boolean }) {
     return (
-        <div className="w-5 h-5 rounded-full bg-background flex items-center justify-center shrink-0">
+        <div className="w-5 h-5 rounded-full bg-ds-bg flex items-center justify-center shrink-0">
             <div className={cn(
                 "w-4 h-4 rounded-full transition-all",
                 checked
-                    ? "border-[5px] border-primary"
-                    : "border-[1.5px] border-muted-foreground"
+                    ? "border-[5px] border-ds-primary"
+                    : "border-[1.5px] border-ds-text-muted"
             )} />
         </div>
     )
@@ -33,8 +33,8 @@ function CheckboxIndicator({ checked }: { checked: boolean }) {
         <div className={cn(
             "w-5 h-5 rounded-[3px] flex items-center justify-center shrink-0 transition-all border",
             checked
-                ? "bg-primary border-primary"
-                : "bg-background border-muted-foreground"
+                ? "bg-ds-primary border-ds-primary"
+                : "bg-ds-bg border-ds-text-muted"
         )}>
             {checked && (
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
@@ -71,16 +71,16 @@ export function FormCard({
     className,
 }: FormCardProps) {
     const stateClass = disabled
-        ? "opacity-40 cursor-not-allowed bg-accent border-primary"
+        ? "opacity-40 cursor-not-allowed bg-ds-primary-subtle border-ds-primary"
         : selected
-            ? "bg-accent border-primary cursor-pointer hover:bg-accent/70 active:bg-background active:border-blue-900"
-            : "bg-background border-border cursor-pointer hover:bg-accent hover:border-primary active:bg-background active:border-blue-900"
+            ? "bg-ds-primary-subtle border-ds-primary cursor-pointer hover:bg-ds-primary-subtle/70 active:bg-ds-bg active:border-blue-900"
+            : "bg-ds-bg border-ds-border cursor-pointer hover:bg-ds-primary-subtle hover:border-ds-primary active:bg-ds-bg active:border-blue-900"
 
     const Indicator = selectionType === "checkbox" ? CheckboxIndicator : RadioIndicator
 
     const baseClass = cn(
         "border rounded-lg p-4 transition-all duration-150 outline-none",
-        "focus-visible:ring-4 focus-visible:ring-ring focus-visible:ring-offset-0",
+        "focus-visible:ring-4 focus-visible:ring-ds-border-focus focus-visible:ring-offset-0",
         stateClass,
         className
     )
@@ -99,8 +99,8 @@ export function FormCard({
                 <Indicator checked={selected} />
                 <div className="flex-1 flex items-center justify-between gap-4 min-w-0">
                     <div className="flex flex-col gap-1 min-w-0">
-                        <p className="text-[14px] font-bold text-foreground leading-5">{label}</p>
-                        {description && <p className="text-[14px] font-normal text-foreground leading-5">{description}</p>}
+                        <p className="text-[14px] font-bold text-ds-text leading-5">{label}</p>
+                        {description && <p className="text-[14px] font-normal text-ds-text leading-5">{description}</p>}
                     </div>
                     {icon && <div className="shrink-0">{icon}</div>}
                 </div>
@@ -126,8 +126,8 @@ export function FormCard({
             </div>
             {/* content: label + description */}
             <div className="flex flex-col gap-1">
-                <p className="text-[14px] font-bold text-foreground leading-5">{label}</p>
-                {description && <p className="text-[14px] font-normal text-foreground leading-5">{description}</p>}
+                <p className="text-[14px] font-bold text-ds-text leading-5">{label}</p>
+                {description && <p className="text-[14px] font-normal text-ds-text leading-5">{description}</p>}
             </div>
         </div>
     )

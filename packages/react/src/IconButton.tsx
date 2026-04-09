@@ -17,7 +17,7 @@ const VARIANT_HOVER: Record<IconButtonVariant, { color: string; bg: string; ring
   primary: { color: 'var(--ds-color-brand-primary)',         bg: 'var(--ds-color-brand-primary-subtle)', ring: 'var(--ds-color-brand-primary)' },
   warning: { color: 'var(--ds-color-feedback-warning-text)', bg: 'var(--ds-color-feedback-warning-bg)', ring: 'var(--ds-color-feedback-warning-border)' },
   danger:  { color: 'var(--ds-color-feedback-error-text)',   bg: 'var(--ds-color-feedback-error-bg)',   ring: 'var(--ds-color-feedback-error-border)' },
-  neutral: { color: 'var(--ds-color-text-primary)',          bg: 'var(--ds-color-surface-raised)',       ring: 'var(--ds-color-brand-primary)' },
+  neutral: { color: 'var(--ds-color-text-ds-primary)',          bg: 'var(--ds-color-surface-raised)',       ring: 'var(--ds-color-brand-primary)' },
 };
 
 const SIZE_STYLE: Record<IconButtonSize, { iconOnly: React.CSSProperties; withText: React.CSSProperties }> = {

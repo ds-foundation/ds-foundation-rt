@@ -23,8 +23,8 @@ export const Default: StoryObj = {
                 justifyContent: 'center',
                 height: 160,
                 borderRadius: 8,
-                border: '1px solid hsl(var(--border))',
-                background: 'hsl(var(--muted))',
+                border: '1px solid var(--ds-border)',
+                background: 'var(--ds-sunken)',
                 fontSize: 18,
                 fontWeight: 600,
               }}
@@ -53,8 +53,8 @@ export const ThreeSlides: StoryObj = {
                 justifyContent: 'center',
                 height: 120,
                 borderRadius: 8,
-                border: '1px solid hsl(var(--border))',
-                background: 'hsl(var(--muted))',
+                border: '1px solid var(--ds-border)',
+                background: 'var(--ds-sunken)',
                 fontSize: 14,
                 fontWeight: 500,
               }}

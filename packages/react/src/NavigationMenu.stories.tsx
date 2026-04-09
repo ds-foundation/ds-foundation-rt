@@ -28,13 +28,13 @@ export const Default: StoryObj = {
             <div className="grid gap-3 p-6 w-[400px]">
               <NavigationMenuLink href="#">
                 <div className="font-medium">Introduction</div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-ds-text-muted">
                   Overview of the design system.
                 </p>
               </NavigationMenuLink>
               <NavigationMenuLink href="#">
                 <div className="font-medium">Installation</div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-ds-text-muted">
                   How to add ds-foundation to your project.
                 </p>
               </NavigationMenuLink>

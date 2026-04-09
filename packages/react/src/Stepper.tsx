@@ -25,31 +25,31 @@ function Stepper({ steps, className }: StepperProps) {
           "w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold border-2 shrink-0 transition-colors",
           {
             "bg-blue-500 border-blue-500 text-white": step.status === "complete",
-            "border-blue-500 text-blue-500 bg-background": step.status === "active",
-            "border-orange-400 text-orange-400 bg-background": step.status === "error",
-            "border-border text-muted-foreground bg-background": step.status === "pending",
+            "border-blue-500 text-blue-500 bg-ds-bg": step.status === "active",
+            "border-orange-400 text-orange-400 bg-ds-bg": step.status === "error",
+            "border-ds-border text-ds-text-muted bg-ds-bg": step.status === "pending",
           }
         )
         return (
           <li key={idx} role="listitem" aria-current={step.status === "active" ? "step" : undefined} className="flex flex-col items-center flex-1">
             <div className="flex items-center w-full">
-              {idx > 0 && <div className={cn("h-0.5 flex-1", prevComplete ? "bg-blue-500" : "bg-border")} />}
+              {idx > 0 && <div className={cn("h-0.5 flex-1", prevComplete ? "bg-blue-500" : "bg-ds-border")} />}
               <div className={circleClass}>
                 {step.status === "complete" && <Check className="w-4 h-4" />}
                 {step.status === "error" && <X className="w-4 h-4" />}
                 {(step.status === "active" || step.status === "pending") && idx + 1}
               </div>
-              {!isLast && <div className={cn("h-0.5 flex-1", step.status === "complete" ? "bg-blue-500" : "bg-border")} />}
+              {!isLast && <div className={cn("h-0.5 flex-1", step.status === "complete" ? "bg-blue-500" : "bg-ds-border")} />}
             </div>
             <Caption className={cn("mt-2 text-center px-1", {
               "text-blue-500 font-medium": step.status === "active",
-              "text-foreground": step.status === "complete",
+              "text-ds-text": step.status === "complete",
               "text-orange-400": step.status === "error",
-              "text-muted-foreground": step.status === "pending",
+              "text-ds-text-muted": step.status === "pending",
             })}>
               {step.label}
             </Caption>
-            {step.description && <Caption className="text-muted-foreground text-center px-1 mt-0.5">{step.description}</Caption>}
+            {step.description && <Caption className="text-ds-text-muted text-center px-1 mt-0.5">{step.description}</Caption>}
           </li>
         )
       })}

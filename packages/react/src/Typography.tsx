@@ -68,7 +68,7 @@ BodySmall.displayName = "BodySmall"
 
 const Caption = React.forwardRef<HTMLSpanElement, TypographyProps>(
     ({ className, ...props }, ref) => (
-        <span ref={ref} className={cn("text-[12px] font-normal leading-[1.4] text-muted-foreground", className)} {...props} />
+        <span ref={ref} className={cn("text-[12px] font-normal leading-[1.4] text-ds-text-muted", className)} {...props} />
     )
 )
 Caption.displayName = "Caption"

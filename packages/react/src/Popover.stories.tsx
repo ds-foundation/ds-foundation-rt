@@ -18,7 +18,7 @@ export const Default: StoryObj = {
       <PopoverContent>
         <div className="space-y-2">
           <h4 className="font-medium leading-none">Popover</h4>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-ds-text-muted">
             This is some popover content. It can contain anything.
           </p>
         </div>

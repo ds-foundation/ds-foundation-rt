@@ -14,7 +14,7 @@ export default meta;
 
 export const Default: StoryObj = {
   render: () => (
-    <Command style={{ width: 320, borderRadius: 8, border: '1px solid hsl(var(--border))' }}>
+    <Command style={{ width: 320, borderRadius: 8, border: '1px solid var(--ds-border)' }}>
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>

@@ -21,7 +21,7 @@ const FONT_SIZE: Record<string, string> = {
 };
 
 const COLOR_MAP: Record<AmountColor, string> = {
-  default: 'var(--ds-color-text-primary)',
+  default: 'var(--ds-color-text-ds-primary)',
   success: 'var(--ds-color-feedback-success-icon)',
   warning: 'var(--ds-color-feedback-warning-text)',
   error:   'var(--ds-color-feedback-error-icon)',

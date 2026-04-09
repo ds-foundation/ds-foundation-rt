@@ -52,7 +52,7 @@ function Segmented({ options, value, defaultValue, onChange, className }: Segmen
     <div
       role="radiogroup"
       onKeyDown={handleKeyDown}
-      className={cn("inline-flex items-center rounded-lg border border-border bg-muted p-1 gap-1", className)}
+      className={cn("inline-flex items-center rounded-lg border border-ds-border bg-ds-sunken p-1 gap-1", className)}
     >
       {options.map(opt => {
         const isActive = opt.value === activeValue
@@ -63,7 +63,7 @@ function Segmented({ options, value, defaultValue, onChange, className }: Segmen
             onClick={() => !opt.disabled && select(opt.value)}
             className={cn(
               "px-4 py-1.5 rounded-md text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
-              isActive ? "bg-background shadow-sm text-foreground" : "text-muted-foreground hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed"
+              isActive ? "bg-ds-bg shadow-sm text-ds-text" : "text-ds-text-muted hover:text-ds-text disabled:opacity-40 disabled:cursor-not-allowed"
             )}
           >
             {opt.label}

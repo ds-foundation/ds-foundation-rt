@@ -15,7 +15,7 @@ export const Default: Story = {
   args: {
     title: 'Payment Details',
     children: (
-      <div style={{ fontSize: '0.875rem', color: 'var(--ds-color-text-primary)' }}>
+      <div style={{ fontSize: '0.875rem', color: 'var(--ds-color-text-ds-primary)' }}>
         <div>Amount: $1,250.00</div>
         <div>Currency: USD</div>
       </div>
@@ -38,7 +38,7 @@ export const LongTitle: Story = {
   args: {
     title: 'A Very Long Section Title That May Wrap Or Truncate',
     children: (
-      <div style={{ fontSize: '0.875rem', color: 'var(--ds-color-text-primary)' }}>
+      <div style={{ fontSize: '0.875rem', color: 'var(--ds-color-text-ds-primary)' }}>
         <div>Content below a long title</div>
       </div>
     ),
