@@ -1,5 +1,5 @@
 /* Wireframe theme — brand-neutral palette for rapid prototyping.
-   Applied via [data-theme="wireframe"] on <html>.
+   Applied by setting the wireframe theme attribute on <html>.
    Feedback tokens (success/warning/error/info) are intentionally omitted —
    they cascade from :root and retain full semantic meaning for customer testing. */
 
