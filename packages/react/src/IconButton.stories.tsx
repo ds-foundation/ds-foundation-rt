@@ -8,7 +8,7 @@ const ChevronIcon = () => (
 );
 
 const meta: Meta<typeof IconButton> = {
-  title: 'Atoms/IconButton',
+  title: 'Components/IconButton',
   component: IconButton,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

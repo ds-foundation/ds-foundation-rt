@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DetailCard } from './DetailCard';
 
 const meta: Meta<typeof DetailCard> = {
-  title: 'Atoms/DetailCard',
+  title: 'Components/DetailCard',
   component: DetailCard,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },

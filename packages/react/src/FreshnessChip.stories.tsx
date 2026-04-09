@@ -6,7 +6,7 @@ const sevenMinutesAgo = new Date(now.getTime() - 7 * 60 * 1000);
 const twentyMinutesAgo = new Date(now.getTime() - 20 * 60 * 1000);
 
 const meta: Meta<typeof FreshnessChip> = {
-  title: 'Atoms/FreshnessChip',
+  title: 'Components/FreshnessChip',
   component: FreshnessChip,
   tags: ['autodocs'],
   parameters: {

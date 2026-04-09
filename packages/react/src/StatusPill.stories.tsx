@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StatusPill } from './StatusPill';
 
 const meta: Meta<typeof StatusPill> = {
-  title: 'Atoms/StatusPill',
+  title: 'Components/StatusPill',
   component: StatusPill,
   tags: ['autodocs'],
   parameters: {

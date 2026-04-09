@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StatusRing } from './StatusRing';
 
 const meta: Meta<typeof StatusRing> = {
-  title: 'Atoms/StatusRing',
+  title: 'Components/StatusRing',
   component: StatusRing,
   tags: ['autodocs'],
   parameters: {

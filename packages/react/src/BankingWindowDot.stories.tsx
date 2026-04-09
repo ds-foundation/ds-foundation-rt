@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { BankingWindowDot } from './BankingWindowDot';
 
 const meta: Meta<typeof BankingWindowDot> = {
-  title: 'Atoms/BankingWindowDot',
+  title: 'Components/BankingWindowDot',
   component: BankingWindowDot,
   tags: ['autodocs'],
   parameters: {
