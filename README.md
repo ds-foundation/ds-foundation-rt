@@ -178,6 +178,21 @@ Packages publish to GitHub Packages under `@ds-foundation`.
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide.
+
+Quick path for adding a component:
+
+1. Pick the right layer: `atoms/` `molecules/` `organisms/` `treasury/`
+2. Create `packages/react/src/components/{layer}/MyComponent.tsx` using `React.forwardRef`
+3. Add `packages/react/src/components/{layer}/MyComponent.stories.tsx`
+4. Export from `packages/react/src/index.ts`
+5. Run `npm run typecheck` — zero errors required
+6. `npx changeset` → open a PR
+
+Never hardcode hex values — every visual property must come from a `--ds-*` token.
+
 ## Known constraints
 
 - **Single barrel export** — `import { Button } from '@ds-foundation/react'` pulls the full bundle. Tree-shaking is not currently supported. For an internal package this is acceptable; revisit if consumers need sub-entry-points.
