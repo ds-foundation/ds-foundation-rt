@@ -13,7 +13,7 @@ export * from './StateBadge';
 export { Alert, AlertTitle, AlertDescription } from './Alert';
 export { AspectRatio } from './AspectRatio';
 export { Avatar, AvatarImage, AvatarFallback } from './Avatar';
-export { Badge, badgeVariants, type BadgeProps } from './Badge';
+export { Badge, type BadgeProps } from './Badge';
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
 export { Label } from './Label';
 export { Progress } from './Progress';
