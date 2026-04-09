@@ -33,13 +33,13 @@ function Stepper({ steps, className }: StepperProps) {
         return (
           <li key={idx} role="listitem" aria-current={step.status === "active" ? "step" : undefined} className="flex flex-col items-center flex-1">
             <div className="flex items-center w-full">
-              {idx > 0 && <div className={cn("h-0.5 flex-1", prevComplete ? "bg-blue-500" : "bg-gray-200")} />}
+              {idx > 0 && <div className={cn("h-0.5 flex-1", prevComplete ? "bg-blue-500" : "bg-border")} />}
               <div className={circleClass}>
                 {step.status === "complete" && <Check className="w-4 h-4" />}
                 {step.status === "error" && <X className="w-4 h-4" />}
                 {(step.status === "active" || step.status === "pending") && idx + 1}
               </div>
-              {!isLast && <div className={cn("h-0.5 flex-1", step.status === "complete" ? "bg-blue-500" : "bg-gray-200")} />}
+              {!isLast && <div className={cn("h-0.5 flex-1", step.status === "complete" ? "bg-blue-500" : "bg-border")} />}
             </div>
             <Caption className={cn("mt-2 text-center px-1", {
               "text-blue-500 font-medium": step.status === "active",
