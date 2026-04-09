@@ -4,7 +4,7 @@ import { CalendarIcon } from "lucide-react"
 import { cn } from "../utils"
 import { Button } from "../atoms/Button"
 import { Calendar } from "../organisms/Calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "./Popover"
+import { Popover, PopoverContent, PopoverTrigger } from "../molecules/Popover"
 
 export interface DatePickerProps {
   value?: Date
