@@ -1,3 +1,13 @@
+# @ds-foundation/tokens — Changelog
+
+## 0.1.0 — 2026-04-09
+
+### Added
+- Initial release — DTCG token build outputting --ds-color-* CSS custom properties
+- Light and dark variable files (variables.css, variables.dark.css)
+
+---
+
 # @ds/tokens
 
 ## 0.2.1

@@ -20,6 +20,9 @@ export { Textarea } from './components/atoms/Textarea';
 export { Toggle } from './components/atoms/Toggle';
 // (toggleVariants is an internal CVA helper — not exported)
 export { Display, H1, H2, H3, H4, H5, BodyLarge, Body, BodySmall, Caption } from './components/atoms/Typography';
+export { DesignSystemProvider, useTheme } from './components/atoms/DesignSystemProvider';
+export type { Theme, DesignSystemProviderProps } from './components/atoms/DesignSystemProvider';
+export { ThemeToggle } from './components/atoms/ThemeToggle';
 
 // ── Molecules ──────────────────────────────────
 export {
