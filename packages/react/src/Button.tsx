@@ -118,7 +118,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     const leftSlot = isLoading
-      ? wrapIcon(<Loader2 className="animate-spin w-4 h-4" />)
+      ? wrapIcon(<Loader2 className="animate-spin" />)
       : leftIcon
         ? wrapIcon(leftIcon)
         : null
