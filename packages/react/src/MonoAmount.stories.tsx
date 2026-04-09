@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MonoAmount } from './MonoAmount';
 
 const meta: Meta<typeof MonoAmount> = {
-  title: 'Atoms/MonoAmount',
+  title: 'Components/MonoAmount',
   component: MonoAmount,
   tags: ['autodocs'],
   parameters: {

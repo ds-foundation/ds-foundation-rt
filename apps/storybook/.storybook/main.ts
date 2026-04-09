@@ -1,5 +1,13 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+import remarkFrontmatter from 'remark-frontmatter';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// createRequire is needed for CJS interop (tailwindcss v3, autoprefixer)
+const require = createRequire(import.meta.url);
 
 const root = path.resolve(__dirname, '..', '..', '..');
 
@@ -12,17 +20,46 @@ const config: StorybookConfig = {
     path.join(root, 'packages/*/src/**/*.stories.@(ts|tsx)'),
   ],
   addons: [
-    '@storybook/addon-docs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            // Strip YAML frontmatter before MDX2 parsing so HTML tags
+            // inside frontmatter strings (e.g. ai-prompt: "...the <button>...")
+            // don't trigger "Expected closing tag" errors.
+            remarkPlugins: [remarkFrontmatter],
+          },
+        },
+      },
+    },
     '@storybook/addon-a11y',
     '@storybook/addon-themes',
-    '@storybook/addon-viewport',
     '@chromatic-com/storybook',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  docs: { autodocs: 'tag' },
+  viteFinal: async (config) => {
+    const { mergeConfig } = await import('vite');
+    // Root node_modules has tailwindcss v4; packages/react uses v3. Require v3 explicitly.
+    const tailwindcss = require(path.join(root, 'packages/react/node_modules/tailwindcss'));
+    const autoprefixer = require('autoprefixer');
+
+    return mergeConfig(config, {
+      css: {
+        postcss: {
+          plugins: [
+            // Reference the config file so theme extensions stay in one place.
+            // Tailwind v3 bundles jiti to parse TypeScript configs.
+            tailwindcss(path.join(root, 'packages/react/tailwind.config.ts')),
+            autoprefixer(),
+          ],
+        },
+      },
+    });
+  },
 };
 
 export default config;
