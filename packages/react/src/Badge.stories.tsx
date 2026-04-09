@@ -11,20 +11,32 @@ export default meta;
 type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
-  args: { children: 'Badge', variant: 'default' },
+  args: { children: 'Badge', color: 'neutral', variant: 'subtle' },
 };
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      <Badge variant="default">Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="success">Success</Badge>
-      <Badge variant="warning">Warning</Badge>
-      <Badge variant="info">Info</Badge>
-      <Badge variant="pink">Pink</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-      <Badge variant="outline">Outline</Badge>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      {(['primary', 'success', 'warning', 'danger', 'info', 'neutral'] as const).map(color => (
+        <div key={color} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <Badge color={color} variant="subtle">{color} subtle</Badge>
+          <Badge color={color} variant="solid">{color} solid</Badge>
+          <Badge color={color} variant="outline">{color} outline</Badge>
+        </div>
+      ))}
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <Badge color="success" variant="subtle" dot>With dot</Badge>
+        <Badge color="danger" variant="solid" dot>With dot</Badge>
+      </div>
+    </div>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      <Badge size="sm" color="primary">Small</Badge>
+      <Badge size="md" color="primary">Medium</Badge>
     </div>
   ),
 };
