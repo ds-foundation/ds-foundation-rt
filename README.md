@@ -253,11 +253,11 @@ All variants and props are documented in Storybook. The registry spec for each c
 
 ### Start a new project from the template
 
-The `template/` directory is a Next.js 15 starter pre-wired to tokens, React components, and the MCP server:
+The `template/` directory is a Next.js 15 starter pre-wired to tokens, React components, and the MCP server. Use `degit` to pull it without cloning the full monorepo:
 
 ```bash
-cp -r template/ ../my-new-project
-cd ../my-new-project
+npx degit ds-foundation/ds-foundation-rt/template my-new-project
+cd my-new-project
 cp .env.example .env    # add GITHUB_TOKEN
 npm install
 npm run dev
@@ -267,7 +267,15 @@ npm run dev
 
 The MCP server exposes the full registry to Claude Code. Claude can look up component specs, resolve token values, and validate component usage in real time — without guessing APIs.
 
-**Start the server:**
+**In your own project** — install the package and run the binary:
+
+```bash
+npm install @ds-foundation/mcp-server
+npx ds-mcp-server
+# Runs at http://localhost:3100
+```
+
+**In this monorepo** (contributors only):
 
 ```bash
 npm run dev -- --filter="@ds-foundation/mcp-server"
