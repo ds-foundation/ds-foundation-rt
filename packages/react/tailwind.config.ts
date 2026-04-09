@@ -1,6 +1,7 @@
 // packages/react/tailwind.config.ts
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
+import plugin from 'tailwindcss/plugin';
 
 export default {
   // Dark mode fires on [data-theme="dark"] attribute on <html>.
@@ -87,5 +88,10 @@ export default {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    plugin(function ({ addVariant }) {
+      addVariant('sketch', '[data-theme="wireframe"] &')
+    }),
+  ],
 } satisfies Config;
