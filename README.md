@@ -122,6 +122,8 @@ Dark mode and wireframe mode override these tokens — component code never need
 <div className="bg-ds-surface text-ds-text border border-ds-border rounded-md" />
 ```
 
+The full token reference — primitive scales, semantic aliases, and dark/wireframe overrides — is in [`packages/tokens/`](./packages/tokens/).
+
 ## Development
 
 **Prerequisites:** Node.js 20+, npm 10+
@@ -175,6 +177,13 @@ Packages publish to GitHub Packages under `@ds-foundation`.
 @ds-foundation:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
+
+## Known constraints
+
+- **Single barrel export** — `import { Button } from '@ds-foundation/react'` pulls the full bundle. Tree-shaking is not currently supported. For an internal package this is acceptable; revisit if consumers need sub-entry-points.
+- **Form-related deps bundled** — `react-hook-form`, `zod`, and `date-fns` are included in the bundle. If your app already uses different form or date libraries, you're shipping both.
+- **No component tests yet** — render and interaction tests are the next priority before a v1 release.
+- **Wireframe palette is hardcoded CSS** — `semantic.wireframe.css` uses hex values rather than token primitives. Intentional for now; updating the wireframe palette means editing the CSS directly.
 
 ## Tech stack
 

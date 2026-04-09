@@ -16,6 +16,13 @@ export interface DesignSystemProviderProps {
   defaultTheme?: Theme
 }
 
+// SSR / hydration note:
+// The provider reads localStorage on the client, which can differ from the server-rendered
+// defaultTheme. To suppress the resulting React hydration mismatch warning, add
+// suppressHydrationWarning to the <html> element in your app's root layout:
+//   <html suppressHydrationWarning>
+// This is the standard pattern for theme providers that use localStorage.
+
 function DesignSystemProvider({
   children,
   defaultTheme = 'light',
