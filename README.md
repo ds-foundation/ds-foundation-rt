@@ -178,6 +178,18 @@ Packages publish to GitHub Packages under `@ds-foundation`.
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
+## Design Principles
+
+Five rules that govern every component decision in this system — read them before contributing:
+
+1. **Restraint by default** — components are neutral at rest; colour communicates intent, not decoration
+2. **Token-first, always** — every visual property comes from a `--ds-*` token; hardcoded values are bugs
+3. **Accessible without configuration** — ARIA, contrast, and keyboard support are built in; consumers inherit them
+4. **Composable, not monolithic** — components do one thing; complex UI is built by combining them
+5. **Three themes, one codebase** — light, dark, and wireframe are equal first-class themes; component code never checks which theme is active
+
+Full rationale with examples: [DESIGN_PRINCIPLES.md](./DESIGN_PRINCIPLES.md)
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full guide.
