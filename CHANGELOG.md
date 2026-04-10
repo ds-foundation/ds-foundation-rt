@@ -29,6 +29,8 @@ Per-package changelogs are in `packages/*/CHANGELOG.md`.
 ### Fixed
 - `Badge` — converted to React.forwardRef for DOM ref forwarding
 - `Dialog`, `Sheet`, `Drawer` overlays — replaced hardcoded `bg-black/80` with `bg-ds-overlay` token
+- `Skeleton`, `Spinner`, `AspectRatio`, `Collapsible`, `ThemeToggle`, `Segmented`, `Stepper`, `EmptyState`, `Timeline` — added React.forwardRef
+- `DesignSystemProvider`, `Sonner`, `DatePicker`, `Calendar`, `Resizable` — documented forwardRef exemptions (context provider / portal / third-party compound component)
 
 ## 0.3.0 — 2026-04-09
 
