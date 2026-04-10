@@ -6,6 +6,7 @@ Per-package changelogs are in `packages/*/CHANGELOG.md`.
 ## [Unreleased]
 
 ### Added
+- Vitest tests: Breadcrumb, Card, DatePicker, Form, HoverCard, InputNumber, InputOTP, Pagination, Popover, Resizable, ScrollArea, Segmented, Select, Stepper, Tabs, ToggleGroup, Tooltip
 - Vitest tests: Avatar, Spinner, Progress, Label, Separator, Collapsible, Slider, Textarea, DesignSystemProvider, ThemeToggle, AspectRatio
 - `IconButton` — 6-variant icon button atom with forwardRef and aria-label support
 - `CurrencyBadge` — currency denomination pill with aria-label
