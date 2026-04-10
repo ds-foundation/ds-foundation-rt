@@ -108,11 +108,9 @@ function createIssue(componentName, layer, gapTypes, gaps, specContent) {
   const title = `[${layer}] ${componentName} — ${gapTypes.join(', ')}`
   const tmpFile = join(ROOT, '.gh-issue-body.tmp')
   try {
-    const milestoneNum = execSync('gh api repos/:owner/:repo/milestones --jq \'.[] | select(.title=="Design System Coverage") | .number\'', { encoding: 'utf8' }).trim()
-    if (!milestoneNum) throw new Error('Design System Coverage milestone not found')
     const labelArgs = gapTypes.map(l => `--label "${l}"`).join(' ')
     writeFileSync(tmpFile, body)
-    const out = execSync(`gh issue create --title ${JSON.stringify(title)} --body-file ${tmpFile} ${labelArgs} --milestone ${milestoneNum}`, { encoding: 'utf8' })
+    const out = execSync(`gh issue create --title ${JSON.stringify(title)} --body-file ${tmpFile} ${labelArgs} --milestone "Design System Coverage"`, { encoding: 'utf8' })
     const m = out.match(/\/issues\/(\d+)/)
     return m ? parseInt(m[1]) : null
   } catch (e) {
