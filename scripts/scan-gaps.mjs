@@ -145,7 +145,7 @@ async function main() {
       const gapTypes = new Set()
       if (!existsSync(filePath.replace('.tsx', '.test.tsx'))) { gaps.push('Missing test file'); gapTypes.add('test-coverage') }
       const content = readFileSync(filePath, 'utf8')
-      if (!content.includes('forwardRef')) { gaps.push('Missing React.forwardRef'); gapTypes.add('code-quality') }
+      if (!content.includes('forwardRef') && !content.includes('@forwardref-exempt')) { gaps.push('Missing React.forwardRef'); gapTypes.add('code-quality') }
       for (const v of checkLayerViolations(filePath, layer)) { gaps.push(v); gapTypes.add('code-quality') }
       for (const e of tsErrors[name] || []) { gaps.push(e); gapTypes.add('code-quality') }
       if (gaps.length) allGaps.push({ name, layer, gapTypes: [...gapTypes], gaps, specContent: null })
