@@ -12,6 +12,7 @@ export { Label } from './components/atoms/Label';
 export { Progress } from './components/atoms/Progress';
 export { RadioGroup, RadioGroupItem } from './components/atoms/RadioGroup';
 export { Separator } from './components/atoms/Separator';
+export { Kbd } from './components/atoms/Kbd';
 export { Skeleton } from './components/atoms/Skeleton';
 export { Slider } from './components/atoms/Slider';
 export { Spinner } from './components/atoms/Spinner';
@@ -75,6 +76,16 @@ export {
   ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger,
 } from './components/organisms/ContextMenu';
 export {
+  AlertDialog, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay,
+  AlertDialogContent, AlertDialogHeader, AlertDialogFooter,
+  AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
+} from './components/organisms/AlertDialog';
+export {
+  Menubar, MenubarMenu, MenubarGroup, MenubarPortal, MenubarSub, MenubarRadioGroup,
+  MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioItem,
+  MenubarLabel, MenubarSeparator, MenubarShortcut, MenubarSubTrigger, MenubarSubContent,
+} from './components/organisms/Menubar';
+export {
   Dialog, DialogClose, DialogContent, DialogDescription,
   DialogFooter, DialogHeader, DialogOverlay, DialogPortal,
   DialogTitle, DialogTrigger,
@@ -107,19 +118,9 @@ export {
   TableFooter, TableHead, TableHeader, TableRow,
 } from './components/organisms/Table';
 export { Timeline, type TimelineItem } from './components/organisms/Timeline';
-
-// ── Treasury ───────────────────────────────────
-export * from './treasury/MonoAmount';
-export * from './treasury/CurrencyBadge';
-export * from './treasury/StatusPill';
-export * from './treasury/StatusRing';
-export * from './treasury/FreshnessChip';
-export * from './treasury/UrgencyBadge';
-export * from './treasury/BankingWindowDot';
-export * from './treasury/DetailCard';
-export * from './treasury/IconButton';
-export * from './treasury/StateBadge';
-export { FormCard, type FormCardProps } from './treasury/FormCard';
-// (RlusdIcon is Ripple-specific branding — not exported from this package)
-export { KpiCard, type KpiCardProps } from './treasury/KpiCard';
-export { Tag, type TagProps } from './treasury/Tag';
+export {
+  Sidebar, SidebarHeader, SidebarContent, SidebarFooter,
+  SidebarGroup, SidebarGroupLabel, SidebarGroupContent,
+  SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator,
+  type SidebarMenuButtonProps,
+} from './components/organisms/Sidebar';
