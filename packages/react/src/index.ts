@@ -76,6 +76,11 @@ export {
   ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger,
 } from './components/organisms/ContextMenu';
 export {
+  AlertDialog, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay,
+  AlertDialogContent, AlertDialogHeader, AlertDialogFooter,
+  AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
+} from './components/organisms/AlertDialog';
+export {
   Dialog, DialogClose, DialogContent, DialogDescription,
   DialogFooter, DialogHeader, DialogOverlay, DialogPortal,
   DialogTitle, DialogTrigger,
