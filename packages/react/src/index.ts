@@ -81,6 +81,11 @@ export {
   AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
 } from './components/organisms/AlertDialog';
 export {
+  Menubar, MenubarMenu, MenubarGroup, MenubarPortal, MenubarSub, MenubarRadioGroup,
+  MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioItem,
+  MenubarLabel, MenubarSeparator, MenubarShortcut, MenubarSubTrigger, MenubarSubContent,
+} from './components/organisms/Menubar';
+export {
   Dialog, DialogClose, DialogContent, DialogDescription,
   DialogFooter, DialogHeader, DialogOverlay, DialogPortal,
   DialogTitle, DialogTrigger,
