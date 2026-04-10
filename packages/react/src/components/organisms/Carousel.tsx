@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "../utils"
 import { Button } from "../atoms/Button"
+import { useReducedMotion } from "../utils/useReducedMotion"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -58,10 +59,12 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
+    const prefersReducedMotion = useReducedMotion()
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        ...(prefersReducedMotion && { duration: 0 }),
       },
       plugins
     )
