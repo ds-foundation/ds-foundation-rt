@@ -1,6 +1,7 @@
 node_modules
 dist
-build
+apps/*/build
+mcp/*/build
 .turbo
 *.log
 .DS_Store
@@ -24,8 +25,8 @@ packages/registry/velite.config.js
 scripts/build-spec-outputs.mjs
 scripts/build-spec-outputs.d.mts
 
-# Token build outputs — generated, do not edit
-packages/tokens/build/
+# Token build outputs — committed intentionally (npm package publishes from build/)
+# Run `npm run build:tokens` to regenerate after changing src/primitives/ or src/semantic/
 
 # Velite output — generated from MDX specs
 .velite/

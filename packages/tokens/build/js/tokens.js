@@ -70,6 +70,22 @@ export const colorOrange200 = "/* #feb9a7 */ color(oklch 0.84 0.1 35)";
 export const colorOrange300 = "/* #ff7f66 */ color(oklch 0.7 0.16 35)";
 export const colorOrange400 = "/* #cb4526 */ color(oklch 0.49 0.17 35)";
 export const colorOrange500 = "/* #471200 */ color(oklch 0.21 0.1 35)";
+export const colorSmartrCoral50 = "/* #fff5f3 */ color(oklch 0.975 0.015 33)";
+export const colorSmartrCoral100 = "/* #ffd9d2 */ color(oklch 0.945 0.035 33)";
+export const colorSmartrCoral300 = "/* #ff9e8a */ color(oklch 0.82 0.11 33)";
+export const colorSmartrCoral400 = "/* #ff7d66 */ color(oklch 0.76 0.16 33)";
+export const colorSmartrCoral500 = "/* #ff6143 */ color(oklch 0.693 0.197 33)";
+export const colorSmartrCoral600 = "/* #d93f25 */ color(oklch 0.58 0.19 32)";
+export const colorSmartrCoral700 = "/* #ac2d16 */ color(oklch 0.46 0.16 31)";
+export const colorSmartrCoral950 = "/* #400900 */ color(oklch 0.165 0.06 29)";
+export const colorSmartrGolden50 = "/* #fffef0 */ color(oklch 0.985 0.012 91)";
+export const colorSmartrGolden100 = "/* #fffbcc */ color(oklch 0.97 0.035 91)";
+export const colorSmartrGolden300 = "/* #fdf570 */ color(oklch 0.945 0.12 91)";
+export const colorSmartrGolden400 = "/* #fee523 */ color(oklch 0.92 0.155 91)";
+export const colorSmartrGolden500 = "/* #ffd100 */ color(oklch 0.875 0.18 91)";
+export const colorSmartrGolden600 = "/* #d49300 */ color(oklch 0.74 0.16 80)";
+export const colorSmartrGolden700 = "/* #976200 */ color(oklch 0.58 0.13 70)";
+export const colorSmartrGolden950 = "/* #231200 */ color(oklch 0.185 0.05 65)";
 export const colorWhite = "/* #ffffff */ color(oklch 1 0 none)";
 export const colorBlack = "/* #000000 */ color(oklch 0 0 none)";
 export const colorTransparent = "/* #000000 */ color(srgb 0 0 0 / 0)";
@@ -87,6 +103,22 @@ export const colorBrandSecondaryHover =
 export const colorBrandSecondarySubtle =
   "/* #f5f3ff */ color(oklch 0.977 0.02 295)";
 export const colorBrandSecondaryOn = "/* #ffffff */ color(oklch 1 0 none)";
+export const colorBrandSmartrCoral =
+  "/* #ff6143 */ color(oklch 0.693 0.197 33)";
+export const colorBrandSmartrCoralHover =
+  "/* #d93f25 */ color(oklch 0.58 0.19 32)";
+export const colorBrandSmartrCoralActive =
+  "/* #ac2d16 */ color(oklch 0.46 0.16 31)";
+export const colorBrandSmartrCoralSubtle =
+  "/* #fff5f3 */ color(oklch 0.975 0.015 33)";
+export const colorBrandSmartrCoralOn = "/* #ffffff */ color(oklch 1 0 none)";
+export const colorBrandSmartrGolden =
+  "/* #ffd100 */ color(oklch 0.875 0.18 91)";
+export const colorBrandSmartrGoldenHover =
+  "/* #d49300 */ color(oklch 0.74 0.16 80)";
+export const colorBrandSmartrGoldenSubtle =
+  "/* #fffef0 */ color(oklch 0.985 0.012 91)";
+export const colorBrandSmartrGoldenOn = "/* #000000 */ color(oklch 0 0 none)";
 export const colorSurfacePage = "/* #f8fafc */ color(oklch 0.98 0.003 247)";
 export const colorSurfaceDefault = "/* #ffffff */ color(oklch 1 0 none)";
 export const colorSurfaceRaised = "/* #ffffff */ color(oklch 1 0 none)";

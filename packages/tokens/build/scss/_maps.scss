@@ -71,6 +71,22 @@ $ds-color-orange-200: /* #feb9a7 */ color(oklch 0.84 0.1 35) !default;
 $ds-color-orange-300: /* #ff7f66 */ color(oklch 0.7 0.16 35) !default;
 $ds-color-orange-400: /* #cb4526 */ color(oklch 0.49 0.17 35) !default;
 $ds-color-orange-500: /* #471200 */ color(oklch 0.21 0.1 35) !default;
+$ds-color-smartr-coral-50: /* #fff5f3 */ color(oklch 0.975 0.015 33) !default;
+$ds-color-smartr-coral-100: /* #ffd9d2 */ color(oklch 0.945 0.035 33) !default;
+$ds-color-smartr-coral-300: /* #ff9e8a */ color(oklch 0.82 0.11 33) !default;
+$ds-color-smartr-coral-400: /* #ff7d66 */ color(oklch 0.76 0.16 33) !default;
+$ds-color-smartr-coral-500: /* #ff6143 */ color(oklch 0.693 0.197 33) !default;
+$ds-color-smartr-coral-600: /* #d93f25 */ color(oklch 0.58 0.19 32) !default;
+$ds-color-smartr-coral-700: /* #ac2d16 */ color(oklch 0.46 0.16 31) !default;
+$ds-color-smartr-coral-950: /* #400900 */ color(oklch 0.165 0.06 29) !default;
+$ds-color-smartr-golden-50: /* #fffef0 */ color(oklch 0.985 0.012 91) !default;
+$ds-color-smartr-golden-100: /* #fffbcc */ color(oklch 0.97 0.035 91) !default;
+$ds-color-smartr-golden-300: /* #fdf570 */ color(oklch 0.945 0.12 91) !default;
+$ds-color-smartr-golden-400: /* #fee523 */ color(oklch 0.92 0.155 91) !default;
+$ds-color-smartr-golden-500: /* #ffd100 */ color(oklch 0.875 0.18 91) !default;
+$ds-color-smartr-golden-600: /* #d49300 */ color(oklch 0.74 0.16 80) !default;
+$ds-color-smartr-golden-700: /* #976200 */ color(oklch 0.58 0.13 70) !default;
+$ds-color-smartr-golden-950: /* #231200 */ color(oklch 0.185 0.05 65) !default;
 $ds-color-white: /* #ffffff */ color(oklch 1 0 none) !default;
 $ds-color-black: /* #000000 */ color(oklch 0 0 none) !default;
 $ds-color-transparent: /* #000000 */ color(srgb 0 0 0 / 0) !default;
@@ -207,6 +223,15 @@ $ds-color-brand-secondary: $ds-color-violet-600 !default;
 $ds-color-brand-secondary-hover: $ds-color-violet-700 !default;
 $ds-color-brand-secondary-subtle: $ds-color-violet-50 !default;
 $ds-color-brand-secondary-on: $ds-color-white !default;
+$ds-color-brand-smartr-coral: $ds-color-smartr-coral-500 !default;
+$ds-color-brand-smartr-coral-hover: $ds-color-smartr-coral-600 !default;
+$ds-color-brand-smartr-coral-active: $ds-color-smartr-coral-700 !default;
+$ds-color-brand-smartr-coral-subtle: $ds-color-smartr-coral-50 !default;
+$ds-color-brand-smartr-coral-on: $ds-color-white !default;
+$ds-color-brand-smartr-golden: $ds-color-smartr-golden-500 !default;
+$ds-color-brand-smartr-golden-hover: $ds-color-smartr-golden-600 !default;
+$ds-color-brand-smartr-golden-subtle: $ds-color-smartr-golden-50 !default;
+$ds-color-brand-smartr-golden-on: $ds-color-neutral-1000 !default;
 $ds-color-surface-page: $ds-color-neutral-50 !default;
 $ds-color-surface-default: $ds-color-neutral-0 !default;
 $ds-color-surface-raised: $ds-color-neutral-0 !default;
@@ -345,6 +370,28 @@ $tokens: (
       '400': $ds-color-orange-400,
       '500': $ds-color-orange-500
     ),
+    'smartr-coral': (
+      '50': $ds-color-smartr-coral-50,
+      '100': $ds-color-smartr-coral-100,
+      '300': $ds-color-smartr-coral-300,
+      '400': $ds-color-smartr-coral-400,
+      '500': $ds-color-smartr-coral-500,
+      '600': $ds-color-smartr-coral-600,
+      '700': $ds-color-smartr-coral-700,
+      '950': $ds-color-smartr-coral-950,
+      '$description': 'SmartR brand coral. 500 = #FF6143 (brand spec). OKLCH L=0.693 C=0.197 H=33.'
+    ),
+    'smartr-golden': (
+      '50': $ds-color-smartr-golden-50,
+      '100': $ds-color-smartr-golden-100,
+      '300': $ds-color-smartr-golden-300,
+      '400': $ds-color-smartr-golden-400,
+      '500': $ds-color-smartr-golden-500,
+      '600': $ds-color-smartr-golden-600,
+      '700': $ds-color-smartr-golden-700,
+      '950': $ds-color-smartr-golden-950,
+      '$description': 'SmartR brand golden. 500 = #FFD100 (brand spec). OKLCH L=0.875 C=0.180 H=91.'
+    ),
     'white': $ds-color-white,
     'black': $ds-color-black,
     'transparent': $ds-color-transparent,
@@ -357,7 +404,19 @@ $tokens: (
       'secondary': $ds-color-brand-secondary,
       'secondary-hover': $ds-color-brand-secondary-hover,
       'secondary-subtle': $ds-color-brand-secondary-subtle,
-      'secondary-on': $ds-color-brand-secondary-on
+      'secondary-on': $ds-color-brand-secondary-on,
+      'smartr': (
+        '$description': 'SmartR product brand colours. Gradient: coral (25%) → golden (100%).',
+        'coral': $ds-color-brand-smartr-coral,
+        'coral-hover': $ds-color-brand-smartr-coral-hover,
+        'coral-active': $ds-color-brand-smartr-coral-active,
+        'coral-subtle': $ds-color-brand-smartr-coral-subtle,
+        'coral-on': $ds-color-brand-smartr-coral-on,
+        'golden': $ds-color-brand-smartr-golden,
+        'golden-hover': $ds-color-brand-smartr-golden-hover,
+        'golden-subtle': $ds-color-brand-smartr-golden-subtle,
+        'golden-on': $ds-color-brand-smartr-golden-on
+      )
     ),
     'surface': (
       'page': $ds-color-surface-page,

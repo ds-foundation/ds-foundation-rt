@@ -1,5 +1,5 @@
 // Auto-generated — do not edit. Run `npm run build:tokens` to regenerate.
-// DTCG 2025.10 | Generated: 2026-04-10T09:09:53.125Z
+// DTCG 2025.10 | Generated: 2026-04-10T14:16:28.265Z
 
 export interface DSTokens {
   'colorNeutral0': string;
@@ -70,6 +70,22 @@ export interface DSTokens {
   'colorOrange300': string;
   'colorOrange400': string;
   'colorOrange500': string;
+  'colorSmartrCoral50': string;
+  'colorSmartrCoral100': string;
+  'colorSmartrCoral300': string;
+  'colorSmartrCoral400': string;
+  'colorSmartrCoral500': string;
+  'colorSmartrCoral600': string;
+  'colorSmartrCoral700': string;
+  'colorSmartrCoral950': string;
+  'colorSmartrGolden50': string;
+  'colorSmartrGolden100': string;
+  'colorSmartrGolden300': string;
+  'colorSmartrGolden400': string;
+  'colorSmartrGolden500': string;
+  'colorSmartrGolden600': string;
+  'colorSmartrGolden700': string;
+  'colorSmartrGolden950': string;
   'colorWhite': string;
   'colorBlack': string;
   'colorTransparent': string;
@@ -82,6 +98,15 @@ export interface DSTokens {
   'colorBrandSecondaryHover': string;
   'colorBrandSecondarySubtle': string;
   'colorBrandSecondaryOn': string;
+  'colorBrandSmartrCoral': string;
+  'colorBrandSmartrCoralHover': string;
+  'colorBrandSmartrCoralActive': string;
+  'colorBrandSmartrCoralSubtle': string;
+  'colorBrandSmartrCoralOn': string;
+  'colorBrandSmartrGolden': string;
+  'colorBrandSmartrGoldenHover': string;
+  'colorBrandSmartrGoldenSubtle': string;
+  'colorBrandSmartrGoldenOn': string;
   'colorSurfacePage': string;
   'colorSurfaceDefault': string;
   'colorSurfaceRaised': string;
