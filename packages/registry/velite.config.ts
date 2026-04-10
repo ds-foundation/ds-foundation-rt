@@ -65,6 +65,7 @@ export default defineConfig({
     components: {
       name:    'Component',
       pattern: 'components/**/*.mdx',
+      exclude: ['components/_template.mdx'],
       schema:  ComponentSpec,
     },
   },

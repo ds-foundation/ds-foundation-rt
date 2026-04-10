@@ -17,7 +17,7 @@ DS Foundation is the single source of truth for how your team builds products. I
 
 ## 1. Start a New Project
 
-**Prerequisites:** GitHub account with access to this repo, Node.js 20+, PostgreSQL.
+**Prerequisites:** GitHub account with access to this repo, Node.js 20+.
 
 **Step 1: Authenticate with GitHub Packages**
 
@@ -33,7 +33,7 @@ To create a PAT: GitHub → Settings → Developer settings → Personal access 
 
 **Step 2: Use the GitHub Template**
 
-1. Go to https://github.com/apacheco-RT/ds-foundation-rt
+1. Go to https://github.com/ds-foundation/ds-foundation-rt
 2. Click **Use this template** → **Create a new repository**
 3. Name your repo, set visibility, click **Create repository**
 
@@ -43,7 +43,7 @@ To create a PAT: GitHub → Settings → Developer settings → Personal access 
 git clone git@github.com:your-org/your-project.git
 cd your-project
 cp .env.example .env
-# Fill in DATABASE_URL, AUTH_SECRET, and optionally DS_MCP_PORT
+# Set DS_MCP_PORT if you need a port other than 3100
 npm install
 npm run dev
 ```
@@ -114,7 +114,7 @@ git checkout -b feat/my-component
 
 **Step 2: Add a registry spec**
 
-Create an MDX file in `packages/registry/src/components/` (copy an existing one as a starting point). The spec must define:
+Create an MDX file in `packages/registry/components/` (copy `_template.mdx` as a starting point). The spec must define:
 - Component name, description, and status
 - All variants and states
 - ARIA attributes in the `accessibility.aria` array
@@ -123,7 +123,7 @@ Create an MDX file in `packages/registry/src/components/` (copy an existing one 
 
 **Step 3: Add a Storybook story**
 
-Add a story in `apps/storybook/src/stories/`. The story must show all variants in both light and dark themes.
+Add a story co-located with the component in `packages/react/src/components/`. The story must show all variants in both light and dark themes.
 
 **Step 4: Validate locally**
 ```bash
@@ -158,7 +158,7 @@ npm update @ds/tokens @ds/core @ds/registry
 
 Not a developer? Use the GitHub issue template.
 
-1. Go to https://github.com/apacheco-RT/ds-foundation-rt/issues/new/choose
+1. Go to https://github.com/ds-foundation/ds-foundation-rt/issues/new/choose
 2. Select **Component Proposal**
 3. Fill in: component name, description, Figma link, intended variants, usage context
 4. Submit — a developer will pick it up and open a PR
@@ -236,4 +236,4 @@ Always use **semantic tokens** (intent-based names). Never use primitive tokens 
 
 - Open an issue in this repo for questions about the design system
 - Ping the design team in Slack for token usage questions
-- Check the registry MDX specs in `packages/registry/src/components/` for component documentation
+- Check the registry MDX specs in `packages/registry/components/` for component documentation
