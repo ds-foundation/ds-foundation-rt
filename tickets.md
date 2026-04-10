@@ -62,12 +62,12 @@ Labels: unimplemented
 Labels: test-coverage
 
 ### AspectRatio (#28) — test-coverage, code-quality
-- [ ] Missing test file
+- [x] Missing test file
 - [ ] Missing React.forwardRef
 Labels: test-coverage, code-quality
 
 ### Avatar (#29) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### Badge (#30) — test-coverage, code-quality
@@ -80,12 +80,12 @@ Labels: test-coverage, code-quality
 Labels: test-coverage
 
 ### Collapsible (#32) — test-coverage, code-quality
-- [ ] Missing test file
+- [x] Missing test file
 - [ ] Missing React.forwardRef
 Labels: test-coverage, code-quality
 
 ### DesignSystemProvider (#33) — test-coverage, code-quality
-- [ ] Missing test file
+- [x] Missing test file
 - [ ] Missing React.forwardRef
 Labels: test-coverage, code-quality
 
@@ -94,11 +94,11 @@ Labels: test-coverage, code-quality
 Labels: test-coverage
 
 ### Label (#35) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### Progress (#36) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### RadioGroup (#37) — test-coverage
@@ -106,7 +106,7 @@ Labels: test-coverage
 Labels: test-coverage
 
 ### Separator (#38) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### Skeleton (#39) — code-quality
@@ -114,11 +114,11 @@ Labels: test-coverage
 Labels: code-quality
 
 ### Slider (#40) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### Spinner (#41) — test-coverage, code-quality
-- [ ] Missing test file
+- [x] Missing test file
 - [ ] Missing React.forwardRef
 Labels: test-coverage, code-quality
 
@@ -127,11 +127,11 @@ Labels: test-coverage, code-quality
 Labels: test-coverage
 
 ### Textarea (#43) — test-coverage
-- [ ] Missing test file
+- [x] Missing test file
 Labels: test-coverage
 
 ### ThemeToggle (#44) — test-coverage, code-quality
-- [ ] Missing test file
+- [x] Missing test file
 - [ ] Missing React.forwardRef
 Labels: test-coverage, code-quality
 

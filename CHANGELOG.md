@@ -6,6 +6,7 @@ Per-package changelogs are in `packages/*/CHANGELOG.md`.
 ## [Unreleased]
 
 ### Added
+- Vitest tests: Avatar, Spinner, Progress, Label, Separator, Collapsible, Slider, Textarea, DesignSystemProvider, ThemeToggle, AspectRatio
 - `IconButton` — 6-variant icon button atom with forwardRef and aria-label support
 - `CurrencyBadge` — currency denomination pill with aria-label
 - `Tag` — coloured label chip with optional remove button and icon slot
