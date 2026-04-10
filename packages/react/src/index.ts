@@ -12,6 +12,7 @@ export { Label } from './components/atoms/Label';
 export { Progress } from './components/atoms/Progress';
 export { RadioGroup, RadioGroupItem } from './components/atoms/RadioGroup';
 export { Separator } from './components/atoms/Separator';
+export { Kbd } from './components/atoms/Kbd';
 export { Skeleton } from './components/atoms/Skeleton';
 export { Slider } from './components/atoms/Slider';
 export { Spinner } from './components/atoms/Spinner';
